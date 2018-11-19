@@ -299,6 +299,12 @@ Prefab:
       value: 
       objectReference: {fileID: 11400000, guid: 4334e789b7eb2434095b87dffbadb2a6,
         type: 2}
+    - target: {fileID: 114674651632615454, guid: fc6dc63aa1e05584d96c7f3309b0f655,
+        type: 2}
+      propertyPath: stats
+      value: 
+      objectReference: {fileID: 11400000, guid: 4334e789b7eb2434095b87dffbadb2a6,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fc6dc63aa1e05584d96c7f3309b0f655, type: 2}
   m_IsPrefabParent: 0
@@ -435,6 +441,58 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9df45b081f30eaf40a07519bf6f3dda4, type: 2}
   m_IsPrefabParent: 0
+--- !u!1001 &1071650304
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4848319863001206, guid: fc6dc63aa1e05584d96c7f3309b0f655, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -4.08
+      objectReference: {fileID: 0}
+    - target: {fileID: 4848319863001206, guid: fc6dc63aa1e05584d96c7f3309b0f655, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4848319863001206, guid: fc6dc63aa1e05584d96c7f3309b0f655, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 3.41
+      objectReference: {fileID: 0}
+    - target: {fileID: 4848319863001206, guid: fc6dc63aa1e05584d96c7f3309b0f655, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4848319863001206, guid: fc6dc63aa1e05584d96c7f3309b0f655, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4848319863001206, guid: fc6dc63aa1e05584d96c7f3309b0f655, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4848319863001206, guid: fc6dc63aa1e05584d96c7f3309b0f655, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4848319863001206, guid: fc6dc63aa1e05584d96c7f3309b0f655, type: 2}
+      propertyPath: m_RootOrder
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 1183065656287742, guid: fc6dc63aa1e05584d96c7f3309b0f655, type: 2}
+      propertyPath: m_Name
+      value: Even Firster
+      objectReference: {fileID: 0}
+    - target: {fileID: 114674651632615454, guid: fc6dc63aa1e05584d96c7f3309b0f655,
+        type: 2}
+      propertyPath: stats
+      value: 
+      objectReference: {fileID: 11400000, guid: 5bd60ff78b0f3d74abb7fcb11cff38c0,
+        type: 2}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: fc6dc63aa1e05584d96c7f3309b0f655, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &1177704117
 GameObject:
   m_ObjectHideFlags: 0
@@ -570,6 +628,12 @@ Prefab:
       value: 
       objectReference: {fileID: 11400000, guid: e00746960b59f9848aec6a2faca9216e,
         type: 2}
+    - target: {fileID: 114674651632615454, guid: fc6dc63aa1e05584d96c7f3309b0f655,
+        type: 2}
+      propertyPath: stats
+      value: 
+      objectReference: {fileID: 11400000, guid: e00746960b59f9848aec6a2faca9216e,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fc6dc63aa1e05584d96c7f3309b0f655, type: 2}
   m_IsPrefabParent: 0
@@ -658,6 +722,12 @@ Prefab:
       propertyPath: m_Name
       value: First
       objectReference: {fileID: 0}
+    - target: {fileID: 114674651632615454, guid: fc6dc63aa1e05584d96c7f3309b0f655,
+        type: 2}
+      propertyPath: stats
+      value: 
+      objectReference: {fileID: 11400000, guid: 850068c29128ebf48927522959bbe999,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fc6dc63aa1e05584d96c7f3309b0f655, type: 2}
   m_IsPrefabParent: 0
@@ -751,6 +821,12 @@ Prefab:
       value: Fourth
       objectReference: {fileID: 0}
     - target: {fileID: 0}
+      propertyPath: stats
+      value: 
+      objectReference: {fileID: 11400000, guid: 7e0416bbb1bb79c44a8fef02d13ee90f,
+        type: 2}
+    - target: {fileID: 114674651632615454, guid: fc6dc63aa1e05584d96c7f3309b0f655,
+        type: 2}
       propertyPath: stats
       value: 
       objectReference: {fileID: 11400000, guid: 7e0416bbb1bb79c44a8fef02d13ee90f,

@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Character : MonoBehaviour, IComparable<Character> {
+public class Character : MonoBehaviour, IComparable<Character> {
 
     public CharacterStats stats;
     public List<Skill> skills;

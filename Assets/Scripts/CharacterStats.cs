@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Character/Stats")]
-public abstract class CharacterStats : ScriptableObject
+public class CharacterStats : ScriptableObject
 {
     public float health;
     public float mana;
