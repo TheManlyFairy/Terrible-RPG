@@ -3,21 +3,18 @@
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 20a21becce49bbf48bd129b25cb1aeec, type: 3}
-  m_Name: Agi 1
+  m_Name: Enemy D
   m_EditorClassIdentifier: 
-  health: 0
-  healthGrowthPerLevel: 0
+  maxHealth: 10
+  health: 2
   mana: 0
-  manaGrowthPerLevel: 0
-  strength: 0
-  strengthGrowthPerLevel: 0
+  strength: 7
+  defense: 2
   intelligence: 0
-  intGrowthPerLevel: 0
-  agility: 1
-  agiGrowthPerLevel: 0
+  agility: 5
