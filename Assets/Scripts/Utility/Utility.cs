@@ -2,8 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AuxiliaryClasses
-{}
+public class Utility
+{
+    public enum GameState {world, battle };
+    public GameState cameraState;
+}
 
 public class CompareCharactersByAgi : IComparer<Character>
 {
@@ -13,7 +16,6 @@ public class CompareCharactersByAgi : IComparer<Character>
         return (int)(y.stats.agility) - (int)x.stats.agility;
     }
 }
-
 public class ComparePlayersByAgi : IComparer<Player>
 {
     public new int Compare(Player x, Player y)
@@ -21,7 +23,6 @@ public class ComparePlayersByAgi : IComparer<Player>
         return (int)(y.stats.agility) - (int)x.stats.agility;
     }
 }
-
 public class CompareEnemiesByAgi : IComparer<Enemy>
 {
     public new int Compare(Enemy x, Enemy y)

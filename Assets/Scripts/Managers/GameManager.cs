@@ -6,8 +6,9 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager gameManager;
     public static List<Player> partyMembers;
+    public Utility.GameState gameState;
     
-    void Start()
+    void Awake()
     {
         if(gameManager !=null)
         {
@@ -16,6 +17,9 @@ public class GameManager : MonoBehaviour
         else
         {
             gameManager = this;
+            gameState = Utility.GameState.battle;
         }
     }
+
+    
 }
