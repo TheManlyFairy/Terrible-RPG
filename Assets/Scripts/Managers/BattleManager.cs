@@ -6,24 +6,45 @@ using UnityEngine;
 public class BattleManager : MonoBehaviour
 {
 
-    public List<Character> battleOrder;
-    public List<Player> partyMembers;
-    public List<Enemy> enemyParty;
+    public float delayTimeBeforePartyReveals;
+    public List<Character> showList;
+    
+    public static BattleManager battleManager;
+    public static List<Character> battleOrder;
+    //public static List<Player> playerParty;
+    //public static List<Enemy> enemyParty;
 
-    // Use this for initialization
-    void Start()
+    void Awake()
     {
-
-        battleOrder = FindObjectsOfType<Character>().OfType<Character>().ToList();
-        battleOrder.Sort(new CompareCharactersByAgi());
-        PlayTurn();
+        if(battleManager !=null)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            battleManager = this;
+            battleOrder = new List<Character>();
+        }
+        
+        
+        //playerParty = new List<Player>();
+        //enemyParty = new List<Enemy>();
     }
+
+    public static void BattleStart(List<Character> playerParty, List<Character> enemyParty)
+    {
+        battleOrder.AddRange(playerParty);
+        battleOrder.AddRange(enemyParty);
+        battleOrder.Sort(new CompareCharactersByAgi());
+        battleManager.showList = battleOrder;
+        GameManager.EnterBattleMode();
+    }
+
 
     void PlayTurn()
     {
         StartCoroutine(TurnPhasePlay());
     }
-
     IEnumerator TurnPhasePlay()
     {
         Vector3 targetPos;
@@ -55,8 +76,8 @@ public class BattleManager : MonoBehaviour
             }
         }
     }
-
-    void SetupEnemyPartyList()
+    
+    /*void SetupEnemyPartyList()
      {
          enemyParty = new List<Enemy>();
          foreach (Character c in battleOrder)
@@ -66,5 +87,5 @@ public class BattleManager : MonoBehaviour
 
          }
         enemyParty.Sort(new CompareEnemiesByAgi());
-     }
+     }*/
 }

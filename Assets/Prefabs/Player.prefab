@@ -21,7 +21,6 @@ GameObject:
   - component: {fileID: 4848319863001206}
   - component: {fileID: 33896546853400952}
   - component: {fileID: 23957897280627034}
-  - component: {fileID: 136301639311273564}
   - component: {fileID: 114898522721760764}
   m_Layer: 0
   m_Name: Player
@@ -99,16 +98,3 @@ MonoBehaviour:
   stats: {fileID: 0}
   skills: []
   target: {fileID: 0}
---- !u!136 &136301639311273564
-CapsuleCollider:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1183065656287742}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}

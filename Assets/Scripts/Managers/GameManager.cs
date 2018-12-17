@@ -1,9 +1,11 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public static Action OnEnterBattle;
     public static GameManager gameManager;
     public static List<Player> partyMembers;
     public Utility.GameState gameState;
@@ -17,9 +19,16 @@ public class GameManager : MonoBehaviour
         else
         {
             gameManager = this;
-            gameState = Utility.GameState.battle;
         }
     }
 
-    
+    public static void EnterBattleMode()
+    {
+        gameManager.gameState = Utility.GameState.battle;
+        if(OnEnterBattle !=null)
+        {
+            OnEnterBattle();
+        }
+
+    }
 }

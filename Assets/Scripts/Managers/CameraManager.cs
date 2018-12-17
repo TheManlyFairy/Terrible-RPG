@@ -10,6 +10,8 @@ public class CameraManager : MonoBehaviour {
     {
         gameManager = GameManager.gameManager;
         animator = GetComponent<Animator>();
+
+        GameManager.OnEnterBattle += TriggerWorldToBattleTransition;
     }
     void TriggerWorldToBattleTransition()
     {
