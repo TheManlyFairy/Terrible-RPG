@@ -14,6 +14,8 @@ public class UIButtonManager : MonoBehaviour {
     private GameObject aboutPanel;
     private GameObject optionsPanel;
     private GameObject characterSelectPanel;
+    private GameObject videoSettingsPanel;
+    private GameObject soundSettingsPanel;
 
     public GameObject currentPanel;
     public GameObject previousPanel;
@@ -21,13 +23,24 @@ public class UIButtonManager : MonoBehaviour {
     public Text characterStatsText;
     public Text characterLore;
 
+
+
+   // public GameObject cubeTest;
+
     private void Awake()
     {
         startMenuPanel = GameObject.Find("MainMenuePanel");
         optionsPanel = GameObject.Find("SettingsMenuePanel");
+        videoSettingsPanel = GameObject.Find("VideoSettingsPanel");
+        soundSettingsPanel = GameObject.Find("SoundSettingsPanel");
         optionsPanel.SetActive(false);
+        videoSettingsPanel.SetActive(false);
+        soundSettingsPanel.SetActive(false);
         characterSelectPanel = GameObject.Find("CharacterSelectPanel");
         characterSelectPanel.SetActive(false);
+
+        //cubeTest.GetComponent<MeshRenderer>().enabled = false;
+       // cubeTest.GetComponent<BoxCollider>().enabled = false;
        
     }
 
@@ -39,6 +52,7 @@ public class UIButtonManager : MonoBehaviour {
         {
             case "NewGameButton":
                 OnNewGameButtonClick();
+                OnHeroButtonClick();
                 currentPanel = characterSelectPanel;
                 previousPanel = startMenuPanel;
                 break;
@@ -62,7 +76,7 @@ public class UIButtonManager : MonoBehaviour {
             case "LoadGameButton":
                 OnLoagGameButtonClick();
                 break;
-
+            /*
             case "NunButton":
                 OnHeroButtonClick();
                 break;
@@ -72,6 +86,29 @@ public class UIButtonManager : MonoBehaviour {
                 break;
 
             case "SushiButton":
+                OnHeroButtonClick();
+                break;
+                */
+            case "QuitButton":
+                Application.Quit();
+                break;
+            case "VideoSettingsButton":
+                    videoSettingsPanel.SetActive(true);
+                    soundSettingsPanel.SetActive(false);
+
+                break;
+            case "SoundSettingsButton":
+                soundSettingsPanel.SetActive(true);
+                videoSettingsPanel.SetActive(false);
+
+                break;
+            case "RightButton":
+                CharacterCameraSwitch.instance.NextCharacter();
+                OnHeroButtonClick();
+                break;
+
+            case "LeftButton":
+                CharacterCameraSwitch.instance.PreviousCharacter();
                 OnHeroButtonClick();
                 break;
 
@@ -84,7 +121,8 @@ public class UIButtonManager : MonoBehaviour {
 
         startMenuPanel.SetActive(false);
         characterSelectPanel.SetActive(true);
-      //  OnHeroButtonClick("Hero 1");
+       // cubeTest.GetComponent<MeshRenderer>().enabled = true;
+        //cubeTest.GetComponent<Animator>().SetBool("Animate", true);
 
     }
 
@@ -108,13 +146,19 @@ public class UIButtonManager : MonoBehaviour {
         startMenuPanel.SetActive(false);
     }
 
-    
+    /*
     private void OnHeroButtonClick()
     {
         characterStatsText.text = EventSystem.current.currentSelectedGameObject.GetComponent<CharacterInfo>().characterStats.ToString();
        characterLore.text =  ReadString(EventSystem.current.currentSelectedGameObject.GetComponent<CharacterInfo>().characterStats.characterName);
     }
-    
+    */
+
+    private void OnHeroButtonClick()
+    {
+        characterStatsText.text = CharacterCameraSwitch.instance.characterList[CharacterCameraSwitch.instance.currentCharacter].GetComponent<CharacterInfo>().characterStats.ToString();
+        characterLore.text = ReadString(CharacterCameraSwitch.instance.characterList[CharacterCameraSwitch.instance.currentCharacter].GetComponent<CharacterInfo>().characterStats.characterName);
+    }
 
     private void OnLoagGameButtonClick()
     {
