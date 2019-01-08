@@ -16,6 +16,8 @@ public class UIButtonManager : MonoBehaviour {
     private GameObject characterSelectPanel;
     private GameObject videoSettingsPanel;
     private GameObject soundSettingsPanel;
+    private GameObject creditsPanel;
+    private GameObject characterSelectButton;
 
     public GameObject currentPanel;
     public GameObject previousPanel;
@@ -23,7 +25,7 @@ public class UIButtonManager : MonoBehaviour {
     public Text characterStatsText;
     public Text characterLore;
 
-
+    public List<GameObject> selectedCharacters;
 
    // public GameObject cubeTest;
 
@@ -36,12 +38,15 @@ public class UIButtonManager : MonoBehaviour {
         optionsPanel.SetActive(false);
         videoSettingsPanel.SetActive(false);
         soundSettingsPanel.SetActive(false);
+        characterSelectButton = GameObject.Find("SelectCharacterButton");
         characterSelectPanel = GameObject.Find("CharacterSelectPanel");
         characterSelectPanel.SetActive(false);
+        creditsPanel = GameObject.Find("CreditsPanel");
+        creditsPanel.SetActive(false);
 
         //cubeTest.GetComponent<MeshRenderer>().enabled = false;
-       // cubeTest.GetComponent<BoxCollider>().enabled = false;
-       
+        // cubeTest.GetComponent<BoxCollider>().enabled = false;
+
     }
 
 
@@ -64,9 +69,11 @@ public class UIButtonManager : MonoBehaviour {
                 previousPanel = startMenuPanel;
                 break;
 
-            case "AboutBtn":
+            case "CreditsButton":
                 Debug.Log(name);
-                OnAboutButtonClick();
+                OnCreditsButtonClick();
+                currentPanel = creditsPanel;
+                previousPanel = startMenuPanel;
                 break;
 
             case "BackButton":
@@ -112,6 +119,16 @@ public class UIButtonManager : MonoBehaviour {
                 OnHeroButtonClick();
                 break;
 
+            case "SelectCharacterButton":
+                selectedCharacters.Add(CharacterCameraSwitch.instance.characterList[CharacterCameraSwitch.instance.currentCharacter]);
+                characterSelectButton.SetActive(false);
+                break;
+
+            case "DeselectCharacterButton":
+                Debug.Log("Removed Character: " + CharacterCameraSwitch.instance.characterList[CharacterCameraSwitch.instance.currentCharacter].name);
+                characterSelectButton.SetActive(true);
+                break;
+
         }
     }
 
@@ -132,12 +149,10 @@ public class UIButtonManager : MonoBehaviour {
         previousPanel.SetActive(true);
     }
 
-    private void OnAboutButtonClick()
+    private void OnCreditsButtonClick()
     {
-        aboutPanel.SetActive(true);
+        creditsPanel.SetActive(true);
         startMenuPanel.SetActive(false);
-        Debug.Log(aboutPanel.name);
-
     }
 
     private void OnOptionsButtonClick()
