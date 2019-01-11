@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Utility;
 
 public class PlayerControls : MonoBehaviour {
 
@@ -16,7 +17,7 @@ public class PlayerControls : MonoBehaviour {
 
     void FixedUpdate()
     {
-        if(gameManager.gameState == Utility.GameState.world)
+        if(gameManager.gameState == GameState.world)
             Move();
     }
 

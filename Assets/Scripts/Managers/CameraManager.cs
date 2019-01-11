@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Utility;
 
 public class CameraManager : MonoBehaviour {
 
@@ -26,14 +27,14 @@ public class CameraManager : MonoBehaviour {
     {
         if (Input.GetKeyDown(KeyCode.R))
         {
-            if (gameManager.gameState == Utility.GameState.world)
+            if (gameManager.gameState == GameState.world)
             {
-                gameManager.gameState = Utility.GameState.battle;
+                gameManager.gameState = GameState.battle;
                 TriggerWorldToBattleTransition();
             }
             else
             {
-                gameManager.gameState = Utility.GameState.world;
+                gameManager.gameState = GameState.world;
                 TriggerBattleToWorldTransition();
             }
         }

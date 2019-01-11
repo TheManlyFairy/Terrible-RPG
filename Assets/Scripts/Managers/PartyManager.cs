@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PartyManager : MonoBehaviour
 {
-
     public List<Character> party;
     void Start()
     {
