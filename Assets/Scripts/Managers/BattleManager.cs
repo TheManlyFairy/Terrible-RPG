@@ -12,8 +12,8 @@ public class BattleManager : MonoBehaviour
 
     public static BattleManager battleManager;
     public static List<Character> battleOrder;
-    //public static List<Player> playerParty;
-    //public static List<Enemy> enemyParty;
+    public static List<Character> playerParty;
+    public static List<Character> enemyParty;
 
     void Awake()
     {
@@ -35,6 +35,9 @@ public class BattleManager : MonoBehaviour
 
     public static void BattleStart(List<Character> playerParty, List<Character> enemyParty)
     {
+        BattleManager.playerParty = playerParty;
+        BattleManager.enemyParty = enemyParty;
+
         battleOrder.AddRange(playerParty);
         battleOrder.AddRange(enemyParty);
         battleOrder.Sort(new CompareCharactersByAgi());

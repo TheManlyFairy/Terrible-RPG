@@ -8,8 +8,8 @@ namespace Utility
     //public GameState cameraState;
 
     public enum SkillType { physical, magical, status }
-    public enum SkillTargeting { allyOnly, enemyOnly, allTargets }
     public enum SkillRange { single, multi }
+    public enum SkillTargeting { allyOnly, enemyOnly, allTargets }
     public enum AffectedStat { strength, armor, magic, resistance, agility }
     public enum StatusType { heal, buff, debuff, burn, poison }
 }

@@ -997,7 +997,7 @@ Prefab:
         type: 2}
       propertyPath: basicAttack
       value: 
-      objectReference: {fileID: 11400000, guid: 79414c991e234cd498d6fbf317ba9265,
+      objectReference: {fileID: 11400000, guid: 07b5a1433e3a24445bbedd1433fb0733,
         type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fc6dc63aa1e05584d96c7f3309b0f655, type: 2}
@@ -1092,7 +1092,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   delayTimeBeforePartyReveals: 0
-  showList: []
 --- !u!114 &1198994040 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 114782417297540460, guid: 9df45b081f30eaf40a07519bf6f3dda4,

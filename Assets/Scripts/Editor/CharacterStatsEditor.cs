@@ -11,9 +11,8 @@ public class CharacterStatsEditor : Editor
 
     public override void OnInspectorGUI()
     {
-        
-
         CharacterStats stats = (CharacterStats)target;
+
         CharacterStats.partyLevel = EditorGUILayout.IntField("Party Level",CharacterStats.partyLevel);
 
         perLevelStatGrowth = EditorGUILayout.Foldout(perLevelStatGrowth, "Per Level Growth Stats");
