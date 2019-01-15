@@ -18,6 +18,10 @@ public class UIButtonManager : MonoBehaviour {
     private GameObject soundSettingsPanel;
     private GameObject creditsPanel;
     private GameObject characterSelectButton;
+    private GameObject nextCharacterButton;
+    private GameObject PreviousCharacterButton;
+
+    public GameObject currentCharacter;
 
     public GameObject currentPanel;
     public GameObject previousPanel;
@@ -39,14 +43,15 @@ public class UIButtonManager : MonoBehaviour {
         videoSettingsPanel.SetActive(false);
         soundSettingsPanel.SetActive(false);
         characterSelectButton = GameObject.Find("SelectCharacterButton");
+        nextCharacterButton = GameObject.Find("NextCharacterButton");
+        PreviousCharacterButton = GameObject.Find("PrevoiusCharacterButton");
         characterSelectPanel = GameObject.Find("CharacterSelectPanel");
         characterSelectPanel.SetActive(false);
         creditsPanel = GameObject.Find("CreditsPanel");
         creditsPanel.SetActive(false);
 
-        //cubeTest.GetComponent<MeshRenderer>().enabled = false;
-        // cubeTest.GetComponent<BoxCollider>().enabled = false;
-
+        nextCharacterButton.GetComponent<Button>().onClick.AddListener(OnNextButtonClick);
+        PreviousCharacterButton.GetComponent<Button>().onClick.AddListener(OnPreviousButtonClick);
     }
 
 
@@ -109,24 +114,24 @@ public class UIButtonManager : MonoBehaviour {
                 videoSettingsPanel.SetActive(false);
 
                 break;
-            case "RightButton":
+            case "NextCharacterButton":
                 CharacterCameraSwitch.instance.NextCharacter();
                 OnHeroButtonClick();
                 break;
 
-            case "LeftButton":
+            case "PrevoiusCharacterButton":
                 CharacterCameraSwitch.instance.PreviousCharacter();
                 OnHeroButtonClick();
                 break;
 
             case "SelectCharacterButton":
-                selectedCharacters.Add(CharacterCameraSwitch.instance.characterList[CharacterCameraSwitch.instance.currentCharacter]);
-                characterSelectButton.SetActive(false);
+
+                OnAddCharater();
                 break;
 
             case "DeselectCharacterButton":
-                Debug.Log("Removed Character: " + CharacterCameraSwitch.instance.characterList[CharacterCameraSwitch.instance.currentCharacter].name);
-                characterSelectButton.SetActive(true);
+                
+                OnRemoveCharacter();
                 break;
 
         }
@@ -138,7 +143,8 @@ public class UIButtonManager : MonoBehaviour {
 
         startMenuPanel.SetActive(false);
         characterSelectPanel.SetActive(true);
-       // cubeTest.GetComponent<MeshRenderer>().enabled = true;
+        currentCharacter = CharacterCameraSwitch.instance.characterList[CharacterCameraSwitch.instance.currentCharacter];
+        // cubeTest.GetComponent<MeshRenderer>().enabled = true;
         //cubeTest.GetComponent<Animator>().SetBool("Animate", true);
 
     }
@@ -191,6 +197,36 @@ public class UIButtonManager : MonoBehaviour {
         reader.Close();
 
         return characterLore.ToString();
+    }
+
+    void OnAddCharater()
+    {
+        //GameObject currentCharacter = CharacterCameraSwitch.instance.characterList[CharacterCameraSwitch.instance.currentCharacter];
+        selectedCharacters.Add(currentCharacter);
+        currentCharacter.GetComponent<CharacterInfo>().isSelected = true;
+       characterSelectButton.SetActive(false);
+    }
+
+    void OnRemoveCharacter()
+    {
+       // GameObject currentCharacter = CharacterCameraSwitch.instance.characterList[CharacterCameraSwitch.instance.currentCharacter];
+        Debug.Log("Removed Character: " + CharacterCameraSwitch.instance.characterList[CharacterCameraSwitch.instance.currentCharacter].name);
+        selectedCharacters.Remove(currentCharacter);
+        currentCharacter.GetComponent<CharacterInfo>().isSelected = false;
+        characterSelectButton.SetActive(true);
+    }
+
+    void OnNextButtonClick()
+    {
+        currentCharacter = CharacterCameraSwitch.instance.characterList[CharacterCameraSwitch.instance.currentCharacter];
+        characterSelectButton.SetActive(!currentCharacter.GetComponent<CharacterInfo>().isSelected);
+    }
+
+    void OnPreviousButtonClick()
+    {
+        currentCharacter = CharacterCameraSwitch.instance.characterList[CharacterCameraSwitch.instance.currentCharacter];
+        characterSelectButton.SetActive(!currentCharacter.GetComponent<CharacterInfo>().isSelected);
+
     }
 
 }

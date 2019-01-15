@@ -348,6 +348,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterStats: {fileID: 11400000, guid: b12525deb95f95d4ca0e145b2fe7dd46, type: 2}
   characterLore: 
+  isSelected: 0
 --- !u!114 &115653132 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 114304632203154250, guid: 5274b129561fde545b160b0f4addb5d6,
@@ -517,17 +518,7 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 114249112590901572, guid: d392e04833b1f4444b028b8852631951,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 743685767}
-    - target: {fileID: 114354361531989196, guid: d392e04833b1f4444b028b8852631951,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 743685767}
-    - target: {fileID: 114167702223007786, guid: d392e04833b1f4444b028b8852631951,
+    - target: {fileID: 114481419810085210, guid: d392e04833b1f4444b028b8852631951,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -537,7 +528,17 @@ Prefab:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 743685767}
-    - target: {fileID: 114481419810085210, guid: d392e04833b1f4444b028b8852631951,
+    - target: {fileID: 114167702223007786, guid: d392e04833b1f4444b028b8852631951,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 743685767}
+    - target: {fileID: 114354361531989196, guid: d392e04833b1f4444b028b8852631951,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 743685767}
+    - target: {fileID: 114249112590901572, guid: d392e04833b1f4444b028b8852631951,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -545,10 +546,6 @@ Prefab:
     - target: {fileID: 1367640966884974, guid: d392e04833b1f4444b028b8852631951, type: 2}
       propertyPath: m_Name
       value: CharacterSelectPanel
-      objectReference: {fileID: 0}
-    - target: {fileID: 1367640966884974, guid: d392e04833b1f4444b028b8852631951, type: 2}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d392e04833b1f4444b028b8852631951, type: 2}
@@ -788,6 +785,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterStats: {fileID: 11400000, guid: 363434ac66fc88d4ba14516a7694ec8b, type: 2}
   characterLore: 
+  isSelected: 0
 --- !u!114 &313204120 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 114625274551737454, guid: 5274b129561fde545b160b0f4addb5d6,
@@ -998,6 +996,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterStats: {fileID: 11400000, guid: 36fe3247d46a08748b16a54e0bb42114, type: 2}
   characterLore: 
+  isSelected: 0
 --- !u!1 &675757233
 GameObject:
   m_ObjectHideFlags: 0

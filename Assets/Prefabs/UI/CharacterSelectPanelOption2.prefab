@@ -179,7 +179,7 @@ GameObject:
   - component: {fileID: 114947820137723814}
   - component: {fileID: 114481419810085210}
   m_Layer: 5
-  m_Name: LeftButton
+  m_Name: PrevoiusCharacterButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -231,7 +231,7 @@ GameObject:
   - component: {fileID: 114332173095512180}
   - component: {fileID: 114881246880722658}
   m_Layer: 5
-  m_Name: RightButton
+  m_Name: NextCharacterButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

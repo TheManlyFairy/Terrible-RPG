@@ -6,5 +6,5 @@ public class CharacterInfo : MonoBehaviour {
 
     public CharacterStats characterStats;
     public string characterLore;
-    
+    public bool isSelected;
 }
