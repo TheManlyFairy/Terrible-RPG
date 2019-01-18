@@ -9,7 +9,9 @@ public class GameManager : MonoBehaviour
     public static Action OnEnterBattle;
     public static GameManager gameManager;
     public static List<Player> partyMembers;
-    public GameState gameState;
+    GameState gameState;
+
+    public GameState CurrentGameState { get { return gameState; } }
     
     void Awake()
     {

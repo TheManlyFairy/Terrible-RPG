@@ -12,8 +12,11 @@ public class BattleManager : MonoBehaviour
 
     public static BattleManager battleManager;
     public static List<Character> battleOrder;
-    //public static List<Player> playerParty;
-    //public static List<Enemy> enemyParty;
+    public static List<Character> playerParty;
+    public static List<Character> enemyParty;
+    static Character currentCharacter;
+
+    public static Character CurrentCharacter { get { return currentCharacter; } }
 
     void Awake()
     {
@@ -35,14 +38,24 @@ public class BattleManager : MonoBehaviour
 
     public static void BattleStart(List<Character> playerParty, List<Character> enemyParty)
     {
+        BattleManager.playerParty = playerParty;
+        BattleManager.enemyParty = enemyParty;
         battleOrder.AddRange(playerParty);
         battleOrder.AddRange(enemyParty);
         battleOrder.Sort(new CompareCharactersByAgi());
         battleManager.showList = battleOrder;
         GameManager.EnterBattleMode();
-        battleManager.PlayTurn();
+        battleManager.SetupTurn();
     }
 
+    public void SelectCharacterBasicAttack()
+    {
+        currentCharacter.combatAction = currentCharacter.basicAttack;
+    }
+    public void SelectCharacterSkill(int index)
+    {
+        currentCharacter.combatAction = currentCharacter.skills[index];
+    }
 
     void PlayTurn()
     {
@@ -52,7 +65,13 @@ public class BattleManager : MonoBehaviour
     {
         StartCoroutine(SetupTurnPhase());
     }
-
+    void EmptyCombatActions()
+    {
+        foreach(Character character in battleOrder)
+        {
+            character.combatAction = null;
+        }
+    }
     List<CharacterStats> returnEnemyStats()
     {
         List<CharacterStats> enemyStats = new List<CharacterStats>();
@@ -62,7 +81,7 @@ public class BattleManager : MonoBehaviour
             {
                 enemyStats.Add(c.stats);
             }
-                
+
         }
         return enemyStats;
     }
@@ -71,61 +90,79 @@ public class BattleManager : MonoBehaviour
     {
         Vector3 targetPos;
         float timer;
-        for (int i = 0; i < 4; i++)
+        foreach (Character character in battleOrder)
         {
-            Debug.LogWarning("playing turn " + (i + 1));
-            foreach (Character c in battleOrder)
+            targetPos = character.transform.localPosition + character.transform.forward;
+            timer = 0;
+
+            while (timer < 1)
             {
-                targetPos = c.transform.localPosition + c.transform.forward;
-                timer = 0;
-
-                while (timer < 1)
-                {
-                    timer += Time.deltaTime;
-                    c.transform.localPosition = Vector3.Lerp(c.transform.localPosition, targetPos, timer);
-                    yield return null;
-                }
-                Character target = battleOrder[Random.Range(0, battleOrder.Count)];
-                //c.Attack(target);
-                c.combatAction = c.basicAttack;
-                
-                if (c.basicAttack.skillRange == SkillRange.single)
-                {
-                    Debug.Log(c + " targeted " + target + " using " + c.combatAction);
-                    c.combatAction.CombatAction(c.stats, target.stats);
-                }
-                   
-                if (c.basicAttack.skillRange == SkillRange.multi)
-                {
-                    Debug.Log(c + " targeted all enemies using " + c.combatAction);
-                    c.combatAction.CombatAction(c.stats, returnEnemyStats());
-                }
-                    
-
-                yield return new WaitForSeconds(0.2f);
-
-                targetPos = c.transform.localPosition - c.transform.forward;
-                timer = 0;
-
-                while (timer < 1)
-                {
-                    timer += Time.deltaTime;
-                    c.transform.localPosition = Vector3.Lerp(c.transform.localPosition, targetPos, timer);
-                    yield return null;
-                }
+                timer += Time.deltaTime;
+                character.transform.localPosition = Vector3.Lerp(character.transform.localPosition, targetPos, timer);
+                yield return null;
             }
-            foreach(Character c in battleOrder)
+            Character target = battleOrder[Random.Range(0, battleOrder.Count)];
+            //c.Attack(target);
+            //c.combatAction = c.basicAttack;
+
+            if ((character.combatAction as ScriptableSkill).skillRange == SkillRange.single)
             {
-                c.CountdownStatuses();
+                Debug.Log(character + " targeted " + target + " using " + character.combatAction);
+                character.PerformAction(target);
+            }
+
+            if ((character.combatAction as ScriptableSkill).skillRange == SkillRange.multi)
+            {
+                Debug.Log(character + " targeted all enemies using " + character.combatAction);
+                character.PerformAction(enemyParty);
+            }
+
+            yield return new WaitForSeconds(character.animator.GetCurrentAnimatorClipInfo(0).Length+0.2f);
+
+            targetPos = character.transform.localPosition - character.transform.forward;
+            timer = 0;
+
+            while (timer < 1)
+            {
+                timer += Time.deltaTime;
+                character.transform.localPosition = Vector3.Lerp(character.transform.localPosition, targetPos, timer);
+                yield return null;
             }
         }
+        foreach (Character character in battleOrder)
+        {
+            character.CountdownStatuses();
+        }
+
+        EmptyCombatActions();
+        StartCoroutine(SetupTurnPhase());
     }
     IEnumerator SetupTurnPhase()
     {
-
-
-
+        for (int partyIndex = 0; partyIndex < playerParty.Count; partyIndex++)
+        {
+            currentCharacter = playerParty[partyIndex];
+            Debug.Log("Now setting up " + currentCharacter.name);
+            while (currentCharacter.combatAction == null)
+            {
+                yield return null;
+                if (Input.GetKeyDown(KeyCode.Escape) && partyIndex > 0)
+                {
+                    partyIndex--;
+                    currentCharacter = playerParty[partyIndex];
+                    currentCharacter.combatAction = null;
+                    Debug.Log("Returning to " + currentCharacter.name);
+                    UIManager.instance.UpdateSkillPanel();
+                }
+            }
+            yield return null;
+        }
+        foreach (Character enemy in enemyParty)
+        {
+            enemy.combatAction = enemy.basicAttack;
+        }
         yield return null;
+        StartCoroutine(PlayTurnPhase());
     }
     /*void SetupEnemyPartyList()
      {

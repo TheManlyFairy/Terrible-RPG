@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95c02aabf9f67f744a15f0fef35fcf39, type: 3}
+  m_Name: Womans Wrath
+  m_EditorClassIdentifier: 
+  skillType: 1
+  skillRange: 1
+  icon: {fileID: 21300000, guid: 5b52528ab70101548a313ab0241fbd26, type: 3}
+  skillName: Womans Wrath
+  manaCost: 0
+  damageBaseMultiplier: 1
+  statusEffect: {fileID: 0}
+  statusChance: 1

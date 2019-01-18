@@ -29,7 +29,23 @@ public class CharacterStatsEditor : Editor
             stats.agility = EditorGUILayout.FloatField("Agility Per Level", stats.agility);
             EditorGUI.indentLevel--;
         }
-
+        totalStats = EditorGUILayout.Foldout(totalStats, "Total Stats", true);
+        if (totalStats)
+        {
+            GUI.enabled = false;
+            EditorGUI.indentLevel++;
+            EditorGUILayout.FloatField("Total Health", stats.TotalHealth);
+            EditorGUILayout.FloatField("Current Health", stats.currentHealth);
+            EditorGUILayout.FloatField("Total Mana", stats.TotalMana);
+            EditorGUILayout.FloatField("Current Mana", stats.currentMana);
+            EditorGUILayout.FloatField("Total Strength", stats.TotalStrength);
+            EditorGUILayout.FloatField("Total Armor", stats.TotalArmor);
+            EditorGUILayout.FloatField("Total Magic", stats.TotalMagic);
+            EditorGUILayout.FloatField("Total Resistance", stats.TotalResistance);
+            EditorGUILayout.FloatField("Total Agility", stats.TotalAgility);
+            EditorGUI.indentLevel--;
+            GUI.enabled = true;
+        }
         baseStats = EditorGUILayout.Foldout(baseStats,"Base Stats",true);
         if (baseStats)
         {
@@ -60,25 +76,6 @@ public class CharacterStatsEditor : Editor
             EditorGUI.indentLevel--;
             GUI.enabled = true;
         }
-        totalStats = EditorGUILayout.Foldout(totalStats,"Total Stats",true);
-        if (totalStats)
-        {
-            GUI.enabled = false;
-            EditorGUI.indentLevel++;
-            EditorGUILayout.FloatField("Total Health",stats.TotalHealth);
-            EditorGUILayout.FloatField("Current Health",stats.currentHealth);
-            EditorGUILayout.FloatField("Total Mana",stats.TotalMana);
-            EditorGUILayout.FloatField("Current Mana",stats.currentMana);
-            EditorGUILayout.FloatField("Total Strength",stats.TotalStrength);
-            EditorGUILayout.FloatField("Total Armor",stats.TotalArmor);
-            EditorGUILayout.FloatField("Total Magic",stats.TotalMagic);
-            EditorGUILayout.FloatField("Total Resistance",stats.TotalResistance);
-            EditorGUILayout.FloatField("Total Agility",stats.TotalAgility);
-            EditorGUI.indentLevel--;
-            GUI.enabled = true;
-        }
-       
-
         EditorUtility.SetDirty(target);
     }
 }

@@ -1,10 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Utility;
 
 public interface ICombatAction
 {
     // overload methods
-    void CombatAction(CharacterStats actor, CharacterStats target);
-    void CombatAction(CharacterStats actor, List<CharacterStats> targets);
+    void CombatAction(Character actor, Character target);
+    void CombatAction(Character actor, List<Character> targets);
 }

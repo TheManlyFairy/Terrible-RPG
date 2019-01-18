@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Name: Magical
   m_EditorClassIdentifier: 
   maxHealth: 10
-  currentHealth: -13
+  currentHealth: 10
   maxMana: 30
   currentMana: 30
   strength: 4
   armor: 5
   magic: 20
   resistance: 10
-  agility: 5
+  agility: 20
   statusResistance: 0

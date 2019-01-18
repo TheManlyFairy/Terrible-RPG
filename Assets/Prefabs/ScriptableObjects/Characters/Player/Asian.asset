@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: Asian
   m_EditorClassIdentifier: 
   maxHealth: 20
-  currentHhealth: 0
+  currentHealth: 0
   maxMana: 15
   currentMana: 0
   strength: 8
@@ -20,3 +20,4 @@ MonoBehaviour:
   magic: 0
   resistance: 6
   agility: 8
+  statusResistance: 0

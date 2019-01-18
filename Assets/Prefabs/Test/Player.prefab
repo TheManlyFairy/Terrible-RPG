@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4848319863001206}
   - component: {fileID: 33896546853400952}
   - component: {fileID: 23957897280627034}
-  - component: {fileID: 114898522721760764}
+  - component: {fileID: 114835929512214554}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -84,7 +84,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1183065656287742}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &114898522721760764
+--- !u!114 &114835929512214554
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -98,4 +98,5 @@ MonoBehaviour:
   stats: {fileID: 0}
   basicAttack: {fileID: 0}
   skills: []
+  afflictedStatuses: []
   target: {fileID: 0}

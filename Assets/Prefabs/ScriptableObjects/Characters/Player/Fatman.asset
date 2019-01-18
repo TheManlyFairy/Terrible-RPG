@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Name: Fatman
   m_EditorClassIdentifier: 
   maxHealth: 30
-  currentHealth: 28
+  currentHealth: 30
   maxMana: 12
   currentMana: 12
   strength: 15
   armor: 18
   magic: 0
   resistance: 12
-  agility: 12
+  agility: 3
   statusResistance: 0

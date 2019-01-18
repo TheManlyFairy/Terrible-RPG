@@ -15,6 +15,7 @@ MonoBehaviour:
   skillRange: 0
   icon: {fileID: 0}
   skillName: Basic Physical Attack
+  animationTrigger: Physical
   manaCost: 0
   damageBaseMultiplier: 1
   statusEffect: {fileID: 0}

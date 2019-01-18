@@ -17,7 +17,7 @@ public class PlayerControls : MonoBehaviour {
 
     void FixedUpdate()
     {
-        if(gameManager.gameState == GameState.world)
+        if(gameManager.CurrentGameState == GameState.world)
             Move();
     }
 

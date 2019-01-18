@@ -14,7 +14,9 @@ MonoBehaviour:
   skillType: 1
   skillRange: 0
   icon: {fileID: 0}
+  soundEffect: {fileID: 0}
   skillName: Basic Magical Attack
+  animationTrigger: Magical
   manaCost: 0
   damageBaseMultiplier: 1
   statusEffect: {fileID: 0}

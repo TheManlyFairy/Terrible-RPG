@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Name: Nun
   m_EditorClassIdentifier: 
   maxHealth: 12
-  currentHhealth: 12
+  currentHealth: 5
   maxMana: 30
   currentMana: 30
   strength: 2
   armor: 1
-  magic: 20
+  magic: 12
   resistance: 20
   agility: 3
+  statusResistance: 0

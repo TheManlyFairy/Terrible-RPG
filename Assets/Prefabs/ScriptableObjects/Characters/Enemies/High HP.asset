@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: High HP
   m_EditorClassIdentifier: 
   maxHealth: 50
-  currentHealth: -7.6
+  currentHealth: 34.5
   maxMana: 20
   currentMana: 20
   strength: 8

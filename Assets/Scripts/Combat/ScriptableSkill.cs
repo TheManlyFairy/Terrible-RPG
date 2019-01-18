@@ -10,7 +10,9 @@ public class ScriptableSkill : ScriptableObject, ICombatAction
     public SkillType skillType;
     public SkillRange skillRange;
     public Sprite icon;
+    public AudioClip soundEffect;
     public string skillName;
+    public string animationTrigger;
     public float manaCost;
     public float damageBaseMultiplier = 1;
     public ScriptableStatus statusEffect;
@@ -18,11 +20,11 @@ public class ScriptableSkill : ScriptableObject, ICombatAction
     [Range(0, 1)]
     public float statusChance;
 
-    CharacterStats actor;
-    CharacterStats target;
+    Character actor;
+    Character target;
     float damageOutput;
 
-    public virtual void CombatAction(CharacterStats actor, CharacterStats target)
+    public virtual void CombatAction(Character actor, Character target)
     {
         this.actor = actor;
         this.target = target;
@@ -35,10 +37,10 @@ public class ScriptableSkill : ScriptableObject, ICombatAction
         //else
             //Debug.Log("Failed to afflict with status");
     }
-    public virtual void CombatAction(CharacterStats actor, List<CharacterStats> targets)
+    public virtual void CombatAction(Character actor, List<Character> targets)
     {
         this.actor = actor;
-        foreach (CharacterStats target in targets)
+        foreach (Character target in targets)
         {
             this.target = target;
             //Debug.Log(target.name + " targeted");
@@ -62,27 +64,27 @@ public class ScriptableSkill : ScriptableObject, ICombatAction
     {
         if (skillType == SkillType.physical)
         {
-            damageOutput = actor.TotalStrength * damageBaseMultiplier - target.TotalArmor;
+            damageOutput = actor.stats.TotalStrength * damageBaseMultiplier - target.stats.TotalArmor;
             target.TakeDamage(damageOutput);
         }
         else if (skillType == SkillType.magical)
         {
-            damageOutput = actor.TotalMagic * damageBaseMultiplier - target.TotalResistance;
+            damageOutput = actor.stats.TotalMagic * damageBaseMultiplier - target.stats.TotalResistance;
             target.TakeDamage(damageOutput);
         }
     }
     void InflictStatus()
     {
-        if (!target.Actor.ContainsStatus(statusEffect))
+        if (!target.ContainsStatus(statusEffect))
         {
             //ScriptableStatus newEffect = (ScriptableStatus)CreateInstance(typeof(ScriptableStatus));
             ScriptableStatus newEffect = Instantiate(statusEffect) as ScriptableStatus;
             //newEffect.name = statusEffect.name;
-            //Debug.Log("Creating new " + newEffect.name + " of type " + newEffect.statusType);
-            target.Actor.AddStatusEffect(newEffect);
-            newEffect.InitializeEffect(actor, target);
+            Debug.Log("Creating new " + newEffect.name + " of type " + newEffect.statusType);
+            target.AddStatusEffect(newEffect);
+            newEffect.InitializeEffect(actor.stats, target.stats);
         }
         else
-            Debug.Log(target.Actor.name + " already afflicted with this");
+            Debug.Log(target.name + " already afflicted with this");
     }
 }

@@ -41,6 +41,7 @@ public class ScriptableStatus : ScriptableObject//, IEquatable<ScriptableStatus>
             case StatusType.burn:
                 instantEffectBaseValue = target.TotalArmor;
                 perTurnEffectBaseValue = actor.TotalMagic;
+                targetStat = AffectedStat.armor;
                 //target.BonusArmor -= (instantEffectBaseValue * instantEffectMultiplier);
                 //Debug.Log("Lowered " + target.name + "'s armor by " + (baseValue * instantEffectMultiplier));
                 DebuffStat();
@@ -48,6 +49,7 @@ public class ScriptableStatus : ScriptableObject//, IEquatable<ScriptableStatus>
             case StatusType.poison:
                 instantEffectBaseValue = target.TotalResistance;
                 perTurnEffectBaseValue = target.TotalHealth;
+                targetStat = AffectedStat.resistance;
                 DebuffStat();
                 break;
             case StatusType.buff:
@@ -85,6 +87,8 @@ public class ScriptableStatus : ScriptableObject//, IEquatable<ScriptableStatus>
                 BuffStat();
                 break;
         }
+
+        affectedTarget.Actor.RemoveStatus(this);
     }
 
     public void Tick()

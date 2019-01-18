@@ -1,11 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 [CreateAssetMenu(menuName = "Character/Stats")]
 public class CharacterStats : ScriptableObject
 {
     public static int partyLevel = 1;
+    
+
     Character actor;
     public Character Actor
     {
@@ -65,11 +68,13 @@ public class CharacterStats : ScriptableObject
     public float TotalAgility { get { return BaseAgility + BonusAgility; } }
     #endregion
 
+    public float HealthPercentage { get { return currentHealth / TotalHealth; } }
+    public float ManaPercentage { get { return currentMana / TotalMana; } }
    
     public void ResetStats()
     {
-        currentHealth = maxHealth;
-        currentMana = maxMana;
+        currentHealth = TotalHealth;
+        currentMana = TotalMana;
         bonusHealth = 0;
         bonusMana = 0;
         bonusStrength = 0;
@@ -84,8 +89,11 @@ public class CharacterStats : ScriptableObject
             currentHealth -= 1;
         else
             currentHealth -= damage;
-
         Debug.Log(actor.name + " took " + damage + " damage!");
+    }
+    public void ReduceMana(float manaLoss)
+    {
+        currentMana -= manaLoss;
     }
     public void Heal(float healing)
     {

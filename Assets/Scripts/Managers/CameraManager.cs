@@ -23,13 +23,13 @@ public class CameraManager : MonoBehaviour {
         animator.SetTrigger("BattleToWorldState");
     }
 
-    void Update()
+   /* void Update()
     {
         if (Input.GetKeyDown(KeyCode.R))
         {
-            if (gameManager.gameState == GameState.world)
+            if (gameManager.CurrentGameState == GameState.world)
             {
-                gameManager.gameState = GameState.battle;
+                gameManager.CurrentGameStat = GameState.battle;
                 TriggerWorldToBattleTransition();
             }
             else
@@ -38,5 +38,5 @@ public class CameraManager : MonoBehaviour {
                 TriggerBattleToWorldTransition();
             }
         }
-    }
+    }*/
 }
