@@ -13,7 +13,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillType: 2
   skillRange: 1
+  animationTrigger: 4
   icon: {fileID: 21300000, guid: 559cc66a7c45b0b4fb497bc6349b2f41, type: 3}
+  soundEffect: {fileID: 0}
   skillName: Pain Pain Go Away
   manaCost: 0
   damageBaseMultiplier: 1

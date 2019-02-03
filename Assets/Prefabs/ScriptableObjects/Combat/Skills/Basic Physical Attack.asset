@@ -13,9 +13,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillType: 0
   skillRange: 0
+  animationTrigger: 1
   icon: {fileID: 0}
+  soundEffect: {fileID: 0}
   skillName: Basic Physical Attack
-  animationTrigger: Physical
   manaCost: 0
   damageBaseMultiplier: 1
   statusEffect: {fileID: 0}

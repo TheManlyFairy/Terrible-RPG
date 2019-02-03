@@ -4,14 +4,20 @@ using UnityEngine;
 
 namespace Utility
 {
+    //is the game currently in battle mode or in world mode
     public enum GameState { world, battle };
-    //public GameState cameraState;
-
+    //used to define what stats are used in the skill calculations
     public enum SkillType { physical, magical, status }
-    public enum SkillTargeting { allyOnly, enemyOnly, allTargets }
+    //defines what characters can be targeted by this skill in combat
+    public enum SkillTargeting { playerOnly, enemyOnly, allTargets }
+    //defines whether the skill targets a single enemy or entire party
     public enum SkillRange { single, multi }
+    //defines what stat is affected as a result of the skill
     public enum AffectedStat { strength, armor, magic, resistance, agility }
+    //defines what status effect the skill afflicts
     public enum StatusType { heal, buff, debuff, burn, poison }
+    //defines what animation type is triggered by this skill
+    public enum AnimationTrigger { Basic = 1, Physical = 2, Magical = 3, Status = 4, Damage = 5, Death = 6 }
 }
 
 public class CompareCharactersByAgi : IComparer<Character>

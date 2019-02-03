@@ -13,6 +13,7 @@ public class CameraManager : MonoBehaviour {
         animator = GetComponent<Animator>();
 
         GameManager.OnEnterBattle += TriggerWorldToBattleTransition;
+        GameManager.OnExitBattle += TriggerBattleToWorldTransition;
     }
     void TriggerWorldToBattleTransition()
     {
@@ -23,7 +24,8 @@ public class CameraManager : MonoBehaviour {
         animator.SetTrigger("BattleToWorldState");
     }
 
-   /* void Update()
+   /* Camera Transition TEST
+    * void Update()
     {
         if (Input.GetKeyDown(KeyCode.R))
         {

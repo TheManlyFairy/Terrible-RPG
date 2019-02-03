@@ -1,33 +1,56 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class PartyManager : MonoBehaviour
 {
+    [SerializeField]
+    Character partyLeader;
     public List<Character> party;
-    void Start()
+
+    public Character PartyLeader { get { return partyLeader; } }
+
+    void Awake()
     {
+        FindPartyMembers();
+        SortPartyPositions();
         HideAllButFirst();
         GameManager.OnEnterBattle += RevealAllParty;
     }
-
-    protected void HideAllButFirst()
+    protected void SortPartyPositions()
+    {
+        int positionModifier = 0;
+        foreach(Character character in party)
+        {
+            character.transform.localPosition = new Vector3(positionModifier, character.transform.localPosition.y, 0);
+            positionModifier -= 3;
+        }
+    }
+    public void HideAllButFirst()
     {
         foreach (Character c in party)
         {
             c.gameObject.SetActive(false);
         }
-        party[0].gameObject.SetActive(true);
-        party[0].gameObject.transform.localPosition = Vector3.zero;
+        partyLeader.gameObject.SetActive(true);
     }
     protected void RevealAllParty()
     {
-        StartCoroutine(RevealDelay());
+        //StartCoroutine(RevealDelay());
+        foreach (Character c in party)
+        {
+            c.gameObject.SetActive(true);
+        }
     }
-
+    protected void FindPartyMembers()
+    {
+        party = GetComponentsInChildren<Character>().ToList();
+        partyLeader = party[0];
+    }
     IEnumerator RevealDelay()
     {
-        yield return new WaitForSeconds(BattleManager.battleManager.delayTimeBeforePartyReveals);
+        yield return new WaitForSeconds(BattleManager.instance.delayTimeBeforePartyReveals);
 
         foreach (Character c in party)
         {

@@ -6,14 +6,16 @@ using UnityEngine.UI;
 public class SkillButton : MonoBehaviour {
 
     public Image skillIcon;
+    public Button button;
     public Text skillName;
     int skillIndex;
 
     void Start()
     {
-        GetComponent<Button>().onClick.AddListener(delegate
+        button = GetComponent<Button>();
+        button.onClick.AddListener(delegate
         {
-            BattleManager.battleManager.SelectCharacterSkill(SkillIndex);
+            BattleManager.instance.SelectCharacterSkill(SkillIndex);
         });
     }
     public int SkillIndex
@@ -21,11 +23,13 @@ public class SkillButton : MonoBehaviour {
         set { skillIndex = value; }
         get { return skillIndex; }
     }
-    public void UpdateButton(ScriptableSkill skill)
+    public void UpdateButton(ScriptableSkill skill, float characterMana)
     {
         skillIcon.sprite = skill.icon;
         skillName.text = skill.skillName;
+        if (characterMana < skill.manaCost)
+            button.interactable = false;
+        else
+            button.interactable = true;
     }
-
-
 }

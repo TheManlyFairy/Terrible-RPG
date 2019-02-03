@@ -7,12 +7,17 @@ using Utility;
 [CreateAssetMenu(menuName = "Combat/Skill")]
 public class ScriptableSkill : ScriptableObject, ICombatAction
 {
+    [Tooltip("What is the nature of this skill. This changes the stats this skill uses for calculations.")]
     public SkillType skillType;
+    [Tooltip("Is this a single targeted ro multi targeted skill.")]
     public SkillRange skillRange;
+    [Tooltip("Can this skill target player characters, enemy characters or both.")]
+    public SkillTargeting skillTargeting;
+    [Tooltip("What type of character animation should be used with this skill.")]
+    public AnimationTrigger animationTrigger;
     public Sprite icon;
     public AudioClip soundEffect;
     public string skillName;
-    public string animationTrigger;
     public float manaCost;
     public float damageBaseMultiplier = 1;
     public ScriptableStatus statusEffect;

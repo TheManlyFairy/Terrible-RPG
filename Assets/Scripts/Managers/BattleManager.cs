@@ -10,42 +10,47 @@ public class BattleManager : MonoBehaviour
     public float delayTimeBeforePartyReveals;
     public List<Character> showList;
 
-    public static BattleManager battleManager;
+    public static BattleManager instance;
     public static List<Character> battleOrder;
     public static List<Character> playerParty;
     public static List<Character> enemyParty;
+    public LayerMask targetingMask;
     static Character currentCharacter;
 
     public static Character CurrentCharacter { get { return currentCharacter; } }
 
+    PartyManager playerPartyManager;
+    PartyManager enemyPartyManager;
+
     void Awake()
     {
-        if (battleManager != null)
+        if (instance != null)
         {
             Destroy(gameObject);
         }
         else
         {
-            battleManager = this;
+            instance = this;
             battleOrder = new List<Character>();
         }
-
 
         //playerParty = new List<Player>();
         //enemyParty = new List<Enemy>();
 
     }
 
-    public static void BattleStart(List<Character> playerParty, List<Character> enemyParty)
+    public static void BattleStart(PartyManager playerPartyManager, PartyManager enemyPartyManager)
     {
-        BattleManager.playerParty = playerParty;
-        BattleManager.enemyParty = enemyParty;
+        instance.playerPartyManager = playerPartyManager;
+        instance.enemyPartyManager = enemyPartyManager;
+        BattleManager.playerParty = playerPartyManager.party;
+        BattleManager.enemyParty = enemyPartyManager.party;
         battleOrder.AddRange(playerParty);
         battleOrder.AddRange(enemyParty);
         battleOrder.Sort(new CompareCharactersByAgi());
-        battleManager.showList = battleOrder;
+        instance.showList = battleOrder;
         GameManager.EnterBattleMode();
-        battleManager.SetupTurn();
+        instance.SetupTurn();
     }
 
     public void SelectCharacterBasicAttack()
@@ -67,10 +72,27 @@ public class BattleManager : MonoBehaviour
     }
     void EmptyCombatActions()
     {
-        foreach(Character character in battleOrder)
+        foreach (Character character in battleOrder)
         {
             character.combatAction = null;
         }
+    }
+    bool AllEnemiesDefeated()
+    {
+        List<Character> livingEnemies;
+        livingEnemies = enemyParty.Where(enemy => enemy.IsAlive).ToList();
+        //Debug.LogWarning("Living enemies: " + livingEnemies.Count);
+        return livingEnemies.Count == 0;
+    }
+    Character SelectTarget()
+    {
+        int mask = 1 << 10;
+        RaycastHit hit;
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        Physics.Raycast(ray, out hit, targetingMask);
+        Debug.Log("clicked "+hit.collider.name);
+        return hit.collider.GetComponent<Character>();
+
     }
     List<CharacterStats> returnEnemyStats()
     {
@@ -88,46 +110,49 @@ public class BattleManager : MonoBehaviour
 
     IEnumerator PlayTurnPhase()
     {
+        UIManager.instance.HideBattleUI();
         Vector3 targetPos;
         float timer;
         foreach (Character character in battleOrder)
         {
-            targetPos = character.transform.localPosition + character.transform.forward;
-            timer = 0;
-
-            while (timer < 1)
+            if (character.IsAlive && !AllEnemiesDefeated())
             {
-                timer += Time.deltaTime;
-                character.transform.localPosition = Vector3.Lerp(character.transform.localPosition, targetPos, timer);
-                yield return null;
+                targetPos = character.transform.localPosition + character.transform.forward;
+                timer = 0;
+
+                while (timer < 1)
+                {
+                    timer += Time.deltaTime;
+                    character.transform.localPosition = Vector3.Lerp(character.transform.localPosition, targetPos, timer);
+                    yield return null;
+                }
+                //Character target = battleOrder[Random.Range(0, battleOrder.Count)];
+
+                if ((character.combatAction as ScriptableSkill).skillRange == SkillRange.single)
+                {
+                    Debug.Log(character + " targetd " + currentCharacter.target.name + " using " + character.combatAction);
+                    character.PerformAction(currentCharacter.target);
+                }
+
+                if ((character.combatAction as ScriptableSkill).skillRange == SkillRange.multi)
+                {
+                    Debug.Log(character + " targeted all enemies using " + character.combatAction);
+                    character.PerformAction(enemyParty);
+                }
+
+                yield return new WaitForSeconds(character.Animator.GetCurrentAnimatorStateInfo(0).length);
+
+                targetPos = character.transform.localPosition - character.transform.forward;
+                timer = 0;
+
+                while (timer < 1)
+                {
+                    timer += Time.deltaTime;
+                    character.transform.localPosition = Vector3.Lerp(character.transform.localPosition, targetPos, timer);
+                    yield return null;
+                }
             }
-            Character target = battleOrder[Random.Range(0, battleOrder.Count)];
-            //c.Attack(target);
-            //c.combatAction = c.basicAttack;
-
-            if ((character.combatAction as ScriptableSkill).skillRange == SkillRange.single)
-            {
-                Debug.Log(character + " targeted " + target + " using " + character.combatAction);
-                character.PerformAction(target);
-            }
-
-            if ((character.combatAction as ScriptableSkill).skillRange == SkillRange.multi)
-            {
-                Debug.Log(character + " targeted all enemies using " + character.combatAction);
-                character.PerformAction(enemyParty);
-            }
-
-            yield return new WaitForSeconds(character.animator.GetCurrentAnimatorClipInfo(0).Length+0.2f);
-
-            targetPos = character.transform.localPosition - character.transform.forward;
-            timer = 0;
-
-            while (timer < 1)
-            {
-                timer += Time.deltaTime;
-                character.transform.localPosition = Vector3.Lerp(character.transform.localPosition, targetPos, timer);
-                yield return null;
-            }
+            yield return null;
         }
         foreach (Character character in battleOrder)
         {
@@ -135,10 +160,21 @@ public class BattleManager : MonoBehaviour
         }
 
         EmptyCombatActions();
-        StartCoroutine(SetupTurnPhase());
+
+        if (AllEnemiesDefeated())
+        {
+            GameManager.ExitBattleMode();
+            yield return new WaitForSeconds(.5f);
+            Destroy(enemyPartyManager.gameObject);
+            playerPartyManager.HideAllButFirst();
+        }
+            
+        else
+            StartCoroutine(SetupTurnPhase());
     }
     IEnumerator SetupTurnPhase()
     {
+        UIManager.instance.ShowBattleUI();
         for (int partyIndex = 0; partyIndex < playerParty.Count; partyIndex++)
         {
             currentCharacter = playerParty[partyIndex];
@@ -146,13 +182,40 @@ public class BattleManager : MonoBehaviour
             while (currentCharacter.combatAction == null)
             {
                 yield return null;
+
                 if (Input.GetKeyDown(KeyCode.Escape) && partyIndex > 0)
                 {
                     partyIndex--;
                     currentCharacter = playerParty[partyIndex];
                     currentCharacter.combatAction = null;
+                    currentCharacter.target = null;
                     Debug.Log("Returning to " + currentCharacter.name);
-                    UIManager.instance.UpdateSkillPanel();
+                    UIManager.instance.ShowSkillsPanel();
+                }
+            }
+            if (currentCharacter.combatAction is ScriptableSkill)
+            {
+                if ((currentCharacter.combatAction as ScriptableSkill).skillRange == SkillRange.single)
+                {
+                    Debug.Log("selecting target");
+                    while (currentCharacter.target == null)
+                    {
+                        if (Input.GetMouseButtonDown(0))
+                        {
+                            currentCharacter.target = SelectTarget();
+                            //Debug.Log("targeted " + currentCharacter.target.name);
+                        }
+                        if (Input.GetKeyDown(KeyCode.Escape) && partyIndex > 0)
+                        {
+                            partyIndex--;
+                            currentCharacter = playerParty[partyIndex];
+                            currentCharacter.combatAction = null;
+                            currentCharacter.target = null;
+                            Debug.Log("Returning to " + currentCharacter.name);
+                            UIManager.instance.ShowSkillsPanel();
+                        }
+                        yield return null;
+                    }
                 }
             }
             yield return null;

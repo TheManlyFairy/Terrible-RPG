@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Name: Chemist
   m_EditorClassIdentifier: 
   maxHealth: 15
-  currentHhealth: 15
+  currentHealth: 15
   maxMana: 50
   currentMana: 50
   strength: 5
   armor: 4
   magic: 30
   resistance: 12
-  agility: 6
+  agility: 15
+  statusResistance: 0

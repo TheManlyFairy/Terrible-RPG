@@ -18,33 +18,33 @@ public class UIManager : MonoBehaviour
         else
         {
             instance = this;
-            GameManager.OnEnterBattle += DisplayBattleUI;
+            //GameManager.OnEnterBattle += DisplayBattleUI;
+            GameManager.OnExitBattle += HideSkillsPanel;
+            GameManager.OnExitBattle += HideBattleUI;
             skillPanel.Init();
         }
     }
 
-    void DisplayBattleUI()
+    public void ShowBattleUI()
     {
-        battleUI.SetActive(true);
+        instance.battleUI.SetActive(true);
     }
-    public void UpdateSkillPanel()
+    public void HideBattleUI()
     {
-        if (!skillPanel.gameObject.activeInHierarchy)
-        {
-            Debug.Log("Activating skill panel");
-            skillPanel.gameObject.SetActive(true);
-            skillPanel.UpdateSkillMenu();
-        }
-        else
-        {
-            Debug.Log("Deactivating skill panel");
-            skillPanel.RemoveCurrentSkillButtons();
-            skillPanel.gameObject.SetActive(false);
-        }
+        instance.battleUI.SetActive(false);
 
     }
-    public void HideMenus()
+
+    public void ShowSkillsPanel()
     {
-        skillPanel.gameObject.SetActive(false);
+        //Debug.Log("Activating skill panel");
+        instance.skillPanel.gameObject.SetActive(true);
+        instance.skillPanel.UpdateSkillMenu();
+    }
+    public void HideSkillsPanel()
+    {
+        //Debug.Log("Deactivating skill panel");
+        instance.skillPanel.RemoveCurrentSkillButtons();
+        instance.skillPanel.gameObject.SetActive(false);
     }
 }

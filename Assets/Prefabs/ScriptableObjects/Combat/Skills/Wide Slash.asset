@@ -13,7 +13,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillType: 0
   skillRange: 1
+  animationTrigger: 2
   icon: {fileID: 21300000, guid: 159bec09ab7defc45a2ef2ec86096ba5, type: 3}
+  soundEffect: {fileID: 0}
   skillName: Wide Slash
   manaCost: 0
   damageBaseMultiplier: 0.8

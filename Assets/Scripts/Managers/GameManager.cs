@@ -7,15 +7,16 @@ using Utility;
 public class GameManager : MonoBehaviour
 {
     public static Action OnEnterBattle;
+    public static Action OnExitBattle;
     public static GameManager gameManager;
     public static List<Player> partyMembers;
     GameState gameState;
 
     public GameState CurrentGameState { get { return gameState; } }
-    
+
     void Awake()
     {
-        if(gameManager !=null)
+        if (gameManager != null)
         {
             Destroy(gameObject);
         }
@@ -28,10 +29,18 @@ public class GameManager : MonoBehaviour
     public static void EnterBattleMode()
     {
         gameManager.gameState = GameState.battle;
-        if(OnEnterBattle !=null)
+        if (OnEnterBattle != null)
         {
             OnEnterBattle();
         }
 
+    }
+    public static void ExitBattleMode()
+    {
+        gameManager.gameState = GameState.world;
+        if (OnExitBattle != null)
+        {
+            OnExitBattle();
+        }
     }
 }

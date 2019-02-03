@@ -6,21 +6,23 @@ using UnityEngine;
 
 public class Character : MonoBehaviour, IComparable<Character>
 {
-    public Animator animator;
+    Animator animator;
+
     public CharacterStats stats;
     public ScriptableSkill basicAttack;
     public List<ScriptableSkill> skills;
     public ICombatAction combatAction;
     public List<ScriptableStatus> afflictedStatuses;
-
+    public Character target;
     public delegate void OnCombatAction(ICombatAction actionInfo);
     public event OnCombatAction OnCombatActionPerformed;
 
     public Action<float> OnHealthChange;
     public Action<float> OnManaChange;
     public Action OnTakeDamage;
-    //public Character target;
-
+    
+    public Animator Animator { get { return animator; } }
+    public bool IsAlive { get { return stats.currentHealth > 0; } }
     void Awake()
     {
         animator = GetComponent<Animator>();
@@ -95,6 +97,8 @@ public class Character : MonoBehaviour, IComparable<Character>
 
         if (OnHealthChange != null)
             OnHealthChange(stats.HealthPercentage);
+        if (OnTakeDamage != null)
+            OnTakeDamage();
 
         Debug.Log(name + " took " + damage + " damage!");
     }

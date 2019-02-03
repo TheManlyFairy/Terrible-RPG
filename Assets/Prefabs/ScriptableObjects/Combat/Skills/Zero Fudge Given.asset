@@ -13,7 +13,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillType: 2
   skillRange: 0
+  animationTrigger: 4
   icon: {fileID: 21300000, guid: 64cab63d456eef64a9f96b4533956a27, type: 3}
+  soundEffect: {fileID: 0}
   skillName: Zero Fudge Given
   manaCost: 0
   damageBaseMultiplier: 1
