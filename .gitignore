@@ -4,6 +4,7 @@
 /Assets/Gaia Dependencies
 /Assets/Morph3D
 /Assets/GaiaExports
+/Assets/Tests
 !/ProjectSettings
 !/Packages
 !/.gitignore
