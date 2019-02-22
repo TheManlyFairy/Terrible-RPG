@@ -85,11 +85,14 @@ public class ScriptableSkill : ScriptableObject, ICombatAction
             //ScriptableStatus newEffect = (ScriptableStatus)CreateInstance(typeof(ScriptableStatus));
             ScriptableStatus newEffect = Instantiate(statusEffect) as ScriptableStatus;
             //newEffect.name = statusEffect.name;
-            Debug.Log("Creating new " + newEffect.name + " of type " + newEffect.statusType);
+            //Debug.Log("Creating new " + newEffect.name + " of type " + newEffect.statusType);
             target.AddStatusEffect(newEffect);
             newEffect.InitializeEffect(actor.stats, target.stats);
         }
         else
-            Debug.Log(target.name + " already afflicted with this");
+        {
+
+        }
+            //Debug.Log(target.name + " already afflicted with this");
     }
 }

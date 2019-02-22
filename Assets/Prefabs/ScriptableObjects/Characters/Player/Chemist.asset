@@ -17,7 +17,7 @@ MonoBehaviour:
   currentMana: 50
   strength: 5
   armor: 4
-  magic: 30
+  magic: 15
   resistance: 12
   agility: 15
   statusResistance: 0

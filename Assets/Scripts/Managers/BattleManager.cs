@@ -75,6 +75,7 @@ public class BattleManager : MonoBehaviour
         foreach (Character character in battleOrder)
         {
             character.combatAction = null;
+            character.target = null;
         }
     }
     bool AllEnemiesDefeated()
@@ -130,8 +131,8 @@ public class BattleManager : MonoBehaviour
 
                 if ((character.combatAction as ScriptableSkill).skillRange == SkillRange.single)
                 {
-                    Debug.Log(character + " targetd " + currentCharacter.target.name + " using " + character.combatAction);
-                    character.PerformAction(currentCharacter.target);
+                    Debug.Log(character + " targeted " + character.target.name + " using " + character.combatAction);
+                    character.PerformAction();
                 }
 
                 if ((character.combatAction as ScriptableSkill).skillRange == SkillRange.multi)
@@ -156,7 +157,8 @@ public class BattleManager : MonoBehaviour
         }
         foreach (Character character in battleOrder)
         {
-            character.CountdownStatuses();
+            if(character.IsAlive)
+                character.CountdownStatuses();
         }
 
         EmptyCombatActions();
@@ -223,6 +225,17 @@ public class BattleManager : MonoBehaviour
         foreach (Character enemy in enemyParty)
         {
             enemy.combatAction = enemy.basicAttack;
+            if(enemy.basicAttack.skillRange == SkillRange.single)
+            {
+                Character enemyTarget = playerParty[Random.Range(0, playerParty.Count - 1)];
+                Debug.Log(enemy.name + " set up to target " + enemyTarget);
+                enemy.target = enemyTarget;
+            }
+            else
+            {
+                Debug.Log(enemy.name + " using a multi targeted attack");
+            }
+                
         }
         yield return null;
         StartCoroutine(PlayTurnPhase());

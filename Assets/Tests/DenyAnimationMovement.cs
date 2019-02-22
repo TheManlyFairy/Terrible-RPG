@@ -4,14 +4,15 @@ using UnityEngine;
 
 public class DenyAnimationMovement : MonoBehaviour {
 
-    public Vector3 position;
+    float preAnimationX, preAnimationZ;
 	// Use this for initialization
 	void Start () {
-        position = transform.position;
+        preAnimationX = transform.localPosition.x;
+        preAnimationZ = transform.localPosition.z;
 	}
 	
 	// Update is called once per frame
 	void LateUpdate () {
-        transform.position = position;
+        transform.localPosition = new Vector3(preAnimationX, transform.localPosition.y, preAnimationZ);
 	}
 }

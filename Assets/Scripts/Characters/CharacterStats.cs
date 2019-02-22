@@ -89,7 +89,7 @@ public class CharacterStats : ScriptableObject
             currentHealth -= 1;
         else
             currentHealth -= damage;
-        Debug.Log(actor.name + " took " + damage + " damage!");
+        //Debug.Log(actor.name + " took " + damage + " damage!");
     }
     public void ReduceMana(float manaLoss)
     {

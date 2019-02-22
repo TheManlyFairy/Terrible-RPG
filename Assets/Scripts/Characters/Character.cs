@@ -75,8 +75,9 @@ public class Character : MonoBehaviour, IComparable<Character>
         ScriptableStatus foundStatus = afflictedStatuses.Find(afflictedStatus => status.effectName == afflictedStatus.effectName);
         return foundStatus != null ? true : false;
     }
-    public void PerformAction(Character target)
+    public void PerformAction()
     {
+        //Debug.Log(name+" acting vs "+this.target)
         combatAction.CombatAction(this, target);
         if (OnCombatActionPerformed != null)
             OnCombatActionPerformed(combatAction);
@@ -86,10 +87,6 @@ public class Character : MonoBehaviour, IComparable<Character>
         combatAction.CombatAction(this, enemies);
         if (OnCombatActionPerformed != null)
             OnCombatActionPerformed(combatAction);
-    }
-    public int CompareTo(Character other)
-    {
-        throw new NotImplementedException();
     }
     public void TakeDamage(float damage)
     {
@@ -115,6 +112,10 @@ public class Character : MonoBehaviour, IComparable<Character>
         stats.Heal(healing);
     }
 
+    public int CompareTo(Character other)
+    {
+        throw new NotImplementedException();
+    }
     /*public void Attack(Character target)
    {
        Debug.Log(name + " used " + basicAttack.name + " on " + target.name);

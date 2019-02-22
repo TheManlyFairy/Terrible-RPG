@@ -35,6 +35,13 @@ public class UIManager : MonoBehaviour
 
     }
 
+    public void InterchangeSkillMenu()
+    {
+        if (skillPanel.isActiveAndEnabled)
+            HideSkillsPanel();
+        else
+            ShowSkillsPanel();
+    }
     public void ShowSkillsPanel()
     {
         //Debug.Log("Activating skill panel");
