@@ -13,11 +13,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillType: 1
   skillRange: 1
+  skillTargeting: 0
   animationTrigger: 3
   icon: {fileID: 21300000, guid: 172260925eff5554abc55a2ca108fcfc, type: 3}
-  soundEffect: {fileID: 0}
+  soundEffect: {fileID: 8300000, guid: 1d7809cd9b7477a48a136497c2f61316, type: 3}
   skillName: Methanol Spray
   manaCost: 0
   damageBaseMultiplier: 0.9
-  statusEffect: {fileID: 11400000, guid: 2855d65277c9e88459c07de4cbc19ed5, type: 2}
-  statusChance: 1
+  statusEffect: {fileID: 11400000, guid: 1c904d5307039b04092d734675d87e08, type: 2}
+  statusChance: 0.35

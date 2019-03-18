@@ -40,8 +40,7 @@ public class PlayerControls : MonoBehaviour
             moveDirection += Vector3.back;
 
         partyLeadAnimator.TriggerWorldAnimations(moveDirection);
-        
 
-        rigBody.velocity = moveDirection * moveSpeed;
+        rigBody.MovePosition(transform.position + moveDirection * moveSpeed * Time.deltaTime);
     }
 }

@@ -11,13 +11,7 @@ public class PartyManager : MonoBehaviour
 
     public Character PartyLeader { get { return partyLeader; } }
 
-    void Awake()
-    {
-        FindPartyMembers();
-        SortPartyPositions();
-        HideAllButFirst();
-        GameManager.OnEnterBattle += RevealAllParty;
-    }
+   
     protected void SortPartyPositions()
     {
         int positionModifier = 0;

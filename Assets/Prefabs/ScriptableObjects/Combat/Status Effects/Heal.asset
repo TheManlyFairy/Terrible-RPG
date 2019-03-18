@@ -14,7 +14,7 @@ MonoBehaviour:
   statusType: 0
   actorStat: 0
   targetStat: 0
-  effectName: 
+  effectName: Heal
   duration: 0
-  instantEffectMultiplier: 0
+  instantEffectMultiplier: 1.25
   perTurnEffectMultiplier: 0

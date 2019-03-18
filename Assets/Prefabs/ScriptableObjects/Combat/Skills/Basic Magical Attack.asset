@@ -13,9 +13,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillType: 1
   skillRange: 0
+  skillTargeting: 0
   animationTrigger: 1
   icon: {fileID: 0}
-  soundEffect: {fileID: 0}
+  soundEffect: {fileID: 8300000, guid: 1ffbabeb397398a4e9691ba5c8adbd1c, type: 3}
   skillName: Basic Magical Attack
   manaCost: 0
   damageBaseMultiplier: 1

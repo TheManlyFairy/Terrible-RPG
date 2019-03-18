@@ -7,7 +7,6 @@ using System;
 public class CharacterStats : ScriptableObject
 {
     public static int partyLevel = 1;
-    
 
     Character actor;
     public Character Actor
@@ -15,7 +14,7 @@ public class CharacterStats : ScriptableObject
         set { actor = value; }
         get { return actor; }
     }
-
+    public string characterName;
     #region Base Stats Per Level (Public Variables)
     // the base value of every character. These values do not change
     public float maxHealth, currentHealth;
@@ -71,6 +70,27 @@ public class CharacterStats : ScriptableObject
     public float HealthPercentage { get { return currentHealth / TotalHealth; } }
     public float ManaPercentage { get { return currentMana / TotalMana; } }
    
+    public void Equip(ScriptableEquipment gearPiece)
+    {
+        BonusHealth += gearPiece.bonusHealth;
+        BonusMana += gearPiece.bonusMana;
+        BonusStrength += gearPiece.bonusStrength;
+        BonusArmor += gearPiece.bonusArmor;
+        BonusMagic += gearPiece.bonusMagic;
+        BonusResistance += gearPiece.bonusResistance;
+        BonusAgility += gearPiece.bonusAgility;
+    }
+    public void Unequip(ScriptableEquipment gearPiece)
+    {
+        BonusHealth -= gearPiece.bonusHealth;
+        BonusMana -= gearPiece.bonusMana;
+        BonusStrength -= gearPiece.bonusStrength;
+        BonusArmor -= gearPiece.bonusArmor;
+        BonusMagic -= gearPiece.bonusMagic;
+        BonusResistance -= gearPiece.bonusResistance;
+        BonusAgility -= gearPiece.bonusAgility;
+    }
+
     public void ResetStats()
     {
         currentHealth = TotalHealth;

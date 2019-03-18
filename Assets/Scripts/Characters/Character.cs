@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class Character : MonoBehaviour, IComparable<Character>
 {
-    Animator animator;
+    protected Animator animator;
 
     public CharacterStats stats;
     public ScriptableSkill basicAttack;
@@ -35,17 +35,17 @@ public class Character : MonoBehaviour, IComparable<Character>
     {
         foreach (ScriptableStatus status in afflictedStatuses)
         {
-            Debug.Log(name + " counting down " + status.name + " to " + status.Countdown);
             status.PerTurnEffect();
+            Debug.Log(name + " counting down " + status.name + " to " + status.Countdown);
         }
         afflictedStatuses = afflictedStatuses.Where(status => status.Countdown > 0).ToList();
     }
     public void AddStatusEffect(ScriptableStatus status)
     {
-        Debug.Log("Adding status for " + name);
+        //Debug.Log("Adding status for " + name);
         if (ContainsStatus(status))
         {
-            Debug.Log(name + " already afflicted");
+            //Debug.Log(name + " already afflicted");
             ScriptableStatus foundStatus = afflictedStatuses.Find(afflictedStatus => status.statusType == afflictedStatus.statusType);
             //foundStatus.RefreshDuration();
             //Debug.Log(name + "'s " + foundStatus.name + " effect has been refreshed to " + foundStatus.Countdown);
@@ -59,6 +59,10 @@ public class Character : MonoBehaviour, IComparable<Character>
     public void RemoveStatus(ScriptableStatus status)
     {
         afflictedStatuses.Remove(status);
+    }
+    public void RemoveAllStatus()
+    {
+        afflictedStatuses.Clear();
     }
     public bool ContainsStatus(ScriptableStatus status)
     {
@@ -96,6 +100,8 @@ public class Character : MonoBehaviour, IComparable<Character>
             OnHealthChange(stats.HealthPercentage);
         if (OnTakeDamage != null)
             OnTakeDamage();
+        if (!IsAlive)
+            RemoveAllStatus();
 
         Debug.Log(name + " took " + damage + " damage!");
     }

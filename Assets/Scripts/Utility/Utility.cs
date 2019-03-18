@@ -18,6 +18,8 @@ namespace Utility
     public enum StatusType { heal, buff, debuff, burn, poison }
     //defines what animation type is triggered by this skill
     public enum AnimationTrigger { Basic = 1, Physical = 2, Magical = 3, Status = 4, Damage = 5, Death = 6 }
+    //defines the type of gear
+    public enum GearType { helmet = 0, armor = 1, boots = 2, weapon = 3 }
 }
 
 public class CompareCharactersByAgi : IComparer<Character>

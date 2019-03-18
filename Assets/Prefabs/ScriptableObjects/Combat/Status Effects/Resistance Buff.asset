@@ -14,7 +14,7 @@ MonoBehaviour:
   statusType: 1
   actorStat: 3
   targetStat: 3
-  effectName: Resistance Buff
-  duration: 1
+  effectName: RES Up
+  duration: 3
   instantEffectMultiplier: 0.3
   perTurnEffectMultiplier: 0

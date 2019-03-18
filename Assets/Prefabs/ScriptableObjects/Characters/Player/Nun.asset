@@ -11,6 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20a21becce49bbf48bd129b25cb1aeec, type: 3}
   m_Name: Nun
   m_EditorClassIdentifier: 
+  characterName: Nun
   maxHealth: 12
   currentHealth: 12
   maxMana: 30

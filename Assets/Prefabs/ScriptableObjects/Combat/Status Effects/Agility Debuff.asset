@@ -11,10 +11,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cc6a6c2dd500d34d80e08c1d18a5872, type: 3}
   m_Name: Agility Debuff
   m_EditorClassIdentifier: 
-  statusType: 0
+  statusType: 2
   actorStat: 0
-  targetStat: 0
-  effectName: 
-  duration: 0
-  instantEffectMultiplier: 0
+  targetStat: 4
+  effectName: AGI Down
+  duration: 2
+  instantEffectMultiplier: 0.2
   perTurnEffectMultiplier: 0

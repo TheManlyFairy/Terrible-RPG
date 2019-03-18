@@ -76,6 +76,12 @@ public class ScriptableStatus : ScriptableObject//, IEquatable<ScriptableStatus>
 
         Tick();
     }
+    public void Tick()
+    {
+        countdown -= 1;
+        if (countdown <= 0)
+            EffectEnd();
+    }
     public virtual void EffectEnd()
     {
         switch (statusType)
@@ -87,16 +93,9 @@ public class ScriptableStatus : ScriptableObject//, IEquatable<ScriptableStatus>
                 BuffStat();
                 break;
         }
-
-        affectedTarget.Actor.RemoveStatus(this);
     }
 
-    public void Tick()
-    {
-        countdown -= 1;
-        if (countdown <= 0)
-            EffectEnd();
-    }
+    
     public void RefreshDuration()
     {
         countdown = duration;

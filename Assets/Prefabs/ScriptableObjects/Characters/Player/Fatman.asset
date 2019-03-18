@@ -11,13 +11,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20a21becce49bbf48bd129b25cb1aeec, type: 3}
   m_Name: Fatman
   m_EditorClassIdentifier: 
+  characterName: Fatman
   maxHealth: 30
   currentHealth: 30
   maxMana: 12
   currentMana: 12
-  strength: 15
+  strength: 100
   armor: 18
   magic: 0
   resistance: 12
-  agility: 3
+  agility: 100
   statusResistance: 0

@@ -15,6 +15,7 @@ public class CharacterStatsEditor : Editor
 
         CharacterStats stats = (CharacterStats)target;
         CharacterStats.partyLevel = EditorGUILayout.IntField("Party Level",CharacterStats.partyLevel);
+        stats.characterName = EditorGUILayout.TextField("Character Name", stats.characterName);
 
         perLevelStatGrowth = EditorGUILayout.Foldout(perLevelStatGrowth, "Per Level Growth Stats");
         if (perLevelStatGrowth)

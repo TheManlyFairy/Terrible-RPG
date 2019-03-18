@@ -4,7 +4,13 @@ using UnityEngine;
 
 public class PlayerPartyManager : PartyManager
 {
-
+    void Start()
+    {
+        FindPartyMembers();
+        SortPartyPositions();
+        HideAllButFirst();
+        GameManager.OnEnterBattle += RevealAllParty;
+    }
     void OnCollisionEnter(Collision col)
     {
         //Debug.Log("Collided with "+col.gameObject.name);
@@ -23,5 +29,14 @@ public class PlayerPartyManager : PartyManager
         col.transform.Translate(transform.forward * 6);
 
         BattleManager.BattleStart(this, col.gameObject.GetComponent<PartyManager>());
+    }
+
+    public void GainExp(int expGained)
+    {
+        foreach(Player player in party)
+        {
+            if(player.IsAlive)
+                player.GainExp(expGained);
+        }
     }
 }

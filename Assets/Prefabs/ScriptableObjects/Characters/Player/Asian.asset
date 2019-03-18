@@ -11,6 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20a21becce49bbf48bd129b25cb1aeec, type: 3}
   m_Name: Asian
   m_EditorClassIdentifier: 
+  characterName: Asian
   maxHealth: 20
   currentHealth: 0
   maxMana: 15

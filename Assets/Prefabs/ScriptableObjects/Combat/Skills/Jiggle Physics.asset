@@ -13,11 +13,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillType: 2
   skillRange: 0
+  skillTargeting: 0
   animationTrigger: 4
   icon: {fileID: 21300000, guid: 5553bf2c071f27a418451b7b81d43c0c, type: 3}
-  soundEffect: {fileID: 0}
+  soundEffect: {fileID: 8300000, guid: 472022f6916a00e49b7070569e5af914, type: 3}
   skillName: Jiggle Physics
   manaCost: 0
   damageBaseMultiplier: 1
-  statusEffect: {fileID: 11400000, guid: 31f952266c20bfb47909d949de1db11f, type: 2}
+  statusEffect: {fileID: 11400000, guid: 024980cfe7711fc4aa710db0b1dc9af9, type: 2}
   statusChance: 1

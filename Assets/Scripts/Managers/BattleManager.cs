@@ -87,12 +87,19 @@ public class BattleManager : MonoBehaviour
     }
     Character SelectTarget()
     {
-        int mask = 1 << 10;
         RaycastHit hit;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        Physics.Raycast(ray, out hit, targetingMask);
-        Debug.Log("clicked "+hit.collider.name);
-        return hit.collider.GetComponent<Character>();
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity, targetingMask))
+        {
+            Debug.Log("clicked " + hit.collider.name);
+            return hit.collider.GetComponent<Character>();
+        }
+        else
+        {
+            Debug.Log(hit);
+            return null;
+        }
+
 
     }
     List<CharacterStats> returnEnemyStats()
@@ -107,6 +114,14 @@ public class BattleManager : MonoBehaviour
 
         }
         return enemyStats;
+    }
+    void CancelPlayerAction()
+    {
+        currentCharacter.combatAction = null;
+        currentCharacter.target = null;
+        UIManager.instance.HideSkillsPanel();
+        Debug.Log("Canceled action for " + currentCharacter.name);
+
     }
 
     IEnumerator PlayTurnPhase()
@@ -138,7 +153,10 @@ public class BattleManager : MonoBehaviour
                 if ((character.combatAction as ScriptableSkill).skillRange == SkillRange.multi)
                 {
                     Debug.Log(character + " targeted all enemies using " + character.combatAction);
-                    character.PerformAction(enemyParty);
+                    if (character is Player)
+                        character.PerformAction(enemyParty);
+                    else
+                        character.PerformAction(playerParty);
                 }
 
                 yield return new WaitForSeconds(character.Animator.GetCurrentAnimatorStateInfo(0).length);
@@ -157,7 +175,7 @@ public class BattleManager : MonoBehaviour
         }
         foreach (Character character in battleOrder)
         {
-            if(character.IsAlive)
+            if (character.IsAlive)
                 character.CountdownStatuses();
         }
 
@@ -168,15 +186,17 @@ public class BattleManager : MonoBehaviour
             GameManager.ExitBattleMode();
             yield return new WaitForSeconds(.5f);
             Destroy(enemyPartyManager.gameObject);
+            (playerPartyManager as PlayerPartyManager).GainExp((enemyPartyManager as EnemyPartyManager).TotalExpValue);
             playerPartyManager.HideAllButFirst();
         }
-            
+
         else
             StartCoroutine(SetupTurnPhase());
     }
     IEnumerator SetupTurnPhase()
     {
         UIManager.instance.ShowBattleUI();
+        currentCharacter = playerParty[0];
         for (int partyIndex = 0; partyIndex < playerParty.Count; partyIndex++)
         {
             currentCharacter = playerParty[partyIndex];
@@ -185,17 +205,23 @@ public class BattleManager : MonoBehaviour
             {
                 yield return null;
 
-                if (Input.GetKeyDown(KeyCode.Escape) && partyIndex > 0)
+                if (Input.GetKeyDown(KeyCode.Escape))
                 {
+                    CancelPlayerAction();
+                    if (partyIndex > 0)
+                    {
+                        partyIndex--;
+                        currentCharacter = playerParty[partyIndex];
+                        CancelPlayerAction();
+                    }
                     partyIndex--;
-                    currentCharacter = playerParty[partyIndex];
-                    currentCharacter.combatAction = null;
-                    currentCharacter.target = null;
-                    Debug.Log("Returning to " + currentCharacter.name);
-                    UIManager.instance.ShowSkillsPanel();
+                    break;
                 }
             }
-            if (currentCharacter.combatAction is ScriptableSkill)
+
+            //Debug.Log(currentCharacter + "'s selected action is "+currentCharacter.combatAction);
+
+            if (currentCharacter.combatAction!= null && currentCharacter.combatAction is ScriptableSkill)
             {
                 if ((currentCharacter.combatAction as ScriptableSkill).skillRange == SkillRange.single)
                 {
@@ -207,14 +233,17 @@ public class BattleManager : MonoBehaviour
                             currentCharacter.target = SelectTarget();
                             //Debug.Log("targeted " + currentCharacter.target.name);
                         }
-                        if (Input.GetKeyDown(KeyCode.Escape) && partyIndex > 0)
+                        if (Input.GetKeyDown(KeyCode.Escape))
                         {
+                            CancelPlayerAction();
+                            if (partyIndex > 0)
+                            {
+                                partyIndex--;
+                                currentCharacter = playerParty[partyIndex];
+                                CancelPlayerAction();
+                            }
                             partyIndex--;
-                            currentCharacter = playerParty[partyIndex];
-                            currentCharacter.combatAction = null;
-                            currentCharacter.target = null;
-                            Debug.Log("Returning to " + currentCharacter.name);
-                            UIManager.instance.ShowSkillsPanel();
+                            break;
                         }
                         yield return null;
                     }
@@ -222,10 +251,11 @@ public class BattleManager : MonoBehaviour
             }
             yield return null;
         }
+
         foreach (Character enemy in enemyParty)
         {
             enemy.combatAction = enemy.basicAttack;
-            if(enemy.basicAttack.skillRange == SkillRange.single)
+            if (enemy.basicAttack.skillRange == SkillRange.single)
             {
                 Character enemyTarget = playerParty[Random.Range(0, playerParty.Count - 1)];
                 Debug.Log(enemy.name + " set up to target " + enemyTarget);
@@ -235,7 +265,7 @@ public class BattleManager : MonoBehaviour
             {
                 Debug.Log(enemy.name + " using a multi targeted attack");
             }
-                
+
         }
         yield return null;
         StartCoroutine(PlayTurnPhase());

@@ -13,11 +13,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillType: 2
   skillRange: 1
+  skillTargeting: 0
   animationTrigger: 4
   icon: {fileID: 0}
   soundEffect: {fileID: 8300000, guid: 1e1fd2a3148734c4f9a8b2c4586ed458, type: 3}
   skillName: Intimidating Shout
   manaCost: 0
   damageBaseMultiplier: 0
-  statusEffect: {fileID: 11400000, guid: 959119d302001dd48a8267ae9bbaf18a, type: 2}
+  statusEffect: {fileID: 11400000, guid: 365db67678a57364d969b0634b44d59f, type: 2}
   statusChance: 1
