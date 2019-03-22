@@ -5,23 +5,23 @@ using UnityEngine.UI;
 public class CharacterInformationBlock : MonoBehaviour
 {
     public Text characterName;
-    public Slider healthBar;
-    public Slider manaBar;
+    public Image healthBar;
+    public Image manaBar;
 
     public void SetupCharacter(Character character)
     {
         characterName.text = character.name;
-        healthBar.value = character.stats.HealthPercentage;
-        manaBar.value = character.stats.ManaPercentage;
+        healthBar.fillAmount = character.stats.HealthPercentage;
+        manaBar.fillAmount = character.stats.ManaPercentage;
         character.OnHealthChange += UpdateHealthChange;
     }
 
     void UpdateHealthChange(float newValue)
     {
-        healthBar.value = newValue;
+        healthBar.fillAmount = newValue;
     }
     void UpdateManaChange(float newValue)
     {
-        manaBar.value = newValue;
+        manaBar.fillAmount = newValue;
     }
 }

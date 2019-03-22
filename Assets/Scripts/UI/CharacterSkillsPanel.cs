@@ -21,14 +21,16 @@ public class CharacterSkillsPanel : MonoBehaviour
         int skillIndex = 0;
         foreach (ScriptableSkill skill in BattleManager.CurrentCharacter.skills)
         {
-            SkillButton newSkillButton = Instantiate(skillButtonTemplate);
-            newSkillButton.transform.SetParent(transform);
-            newSkillButton.transform.localScale = Vector3.one;
-            newSkillButton.UpdateButton(skill, BattleManager.CurrentCharacter.stats.currentMana);
-            newSkillButton.gameObject.SetActive(true);
-            newSkillButton.SkillIndex = skillIndex;
-            skillButtons.Add(newSkillButton);
-
+            if(skill.IsUnlocked)
+            {
+                SkillButton newSkillButton = Instantiate(skillButtonTemplate);
+                newSkillButton.transform.SetParent(transform);
+                newSkillButton.transform.localScale = Vector3.one;
+                newSkillButton.UpdateButton(skill, BattleManager.CurrentCharacter.stats.currentMana);
+                newSkillButton.gameObject.SetActive(true);
+                newSkillButton.SkillIndex = skillIndex;
+                skillButtons.Add(newSkillButton);
+            }
             //Debug.Log("Added " + newSkillButton.skillName.text);
             skillIndex++;
         }

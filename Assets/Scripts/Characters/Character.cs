@@ -29,6 +29,7 @@ public class Character : MonoBehaviour, IComparable<Character>
         afflictedStatuses = new List<ScriptableStatus>();
         stats.Actor = this;
         stats.ResetStats();
+        SetupAsActorForSkills();
     }
 
     public void CountdownStatuses()
@@ -82,13 +83,13 @@ public class Character : MonoBehaviour, IComparable<Character>
     public void PerformAction()
     {
         //Debug.Log(name+" acting vs "+this.target)
-        combatAction.CombatAction(this, target);
+        combatAction.CombatAction(target);
         if (OnCombatActionPerformed != null)
             OnCombatActionPerformed(combatAction);
     }
     public void PerformAction(List<Character> enemies)
     {
-        combatAction.CombatAction(this, enemies);
+        combatAction.CombatAction(enemies);
         if (OnCombatActionPerformed != null)
             OnCombatActionPerformed(combatAction);
     }
@@ -118,6 +119,14 @@ public class Character : MonoBehaviour, IComparable<Character>
         stats.Heal(healing);
     }
 
+    protected void SetupAsActorForSkills()
+    {
+        basicAttack.Actor = this;
+        foreach(ScriptableSkill skill in skills)
+        {
+            skill.Actor = this;
+        }
+    }
     public int CompareTo(Character other)
     {
         throw new NotImplementedException();

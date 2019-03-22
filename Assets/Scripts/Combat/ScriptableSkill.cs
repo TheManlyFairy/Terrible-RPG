@@ -18,6 +18,8 @@ public class ScriptableSkill : ScriptableObject, ICombatAction
     public Sprite icon;
     public AudioClip soundEffect;
     public string skillName;
+    [SerializeField]
+    int levelRequirement;
     public float manaCost;
     public float damageBaseMultiplier = 1;
     public ScriptableStatus statusEffect;
@@ -25,43 +27,42 @@ public class ScriptableSkill : ScriptableObject, ICombatAction
     [Range(0, 1)]
     public float statusChance;
 
+    public Character Actor
+    {
+        set { actor = value; }
+        get { return actor; }
+    }
     Character actor;
     Character target;
     float damageOutput;
+   
 
-    public virtual void CombatAction(Character actor, Character target)
+    public bool IsUnlocked { get { return (actor as Player).level > levelRequirement; } }
+
+    public virtual void CombatAction(Character target)
     {
-        this.actor = actor;
         this.target = target;
-
         if (skillType != SkillType.status)
             InflictDamage(skillType);
 
         if (statusEffect != null && UnityEngine.Random.Range(0f, 1f) <= statusChance)
             InflictStatus();
-        //else
-            //Debug.Log("Failed to afflict with status");
     }
-    public virtual void CombatAction(Character actor, List<Character> targets)
+    public virtual void CombatAction(List<Character> targets)
     {
-        this.actor = actor;
+        //this.actor = actor;
         foreach (Character target in targets)
         {
             this.target = target;
-            //Debug.Log(target.name + " targeted");
             if (skillType != SkillType.status)
             {
-                //Debug.Log(target.name + " damaged");
                 InflictDamage(skillType);
             }
-                
 
             if (statusEffect != null && UnityEngine.Random.Range(0f, 1f) <= statusChance)
             {
-                //Debug.Log(target.name + " afflicted");
                 InflictStatus();
             }
-                
         }
     }
 
@@ -69,11 +70,13 @@ public class ScriptableSkill : ScriptableObject, ICombatAction
     {
         if (skillType == SkillType.physical)
         {
+            Debug.Log(actor.name + " targeted ");
             damageOutput = actor.stats.TotalStrength * damageBaseMultiplier - target.stats.TotalArmor;
             target.TakeDamage(damageOutput);
         }
         else if (skillType == SkillType.magical)
         {
+            Debug.Log(actor.name + " targeted " + target.name);
             damageOutput = actor.stats.TotalMagic * damageBaseMultiplier - target.stats.TotalResistance;
             target.TakeDamage(damageOutput);
         }
@@ -93,6 +96,5 @@ public class ScriptableSkill : ScriptableObject, ICombatAction
         {
 
         }
-            //Debug.Log(target.name + " already afflicted with this");
     }
 }

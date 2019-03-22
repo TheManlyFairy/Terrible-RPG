@@ -10,6 +10,15 @@ public class Enemy : Character, IComparable<Enemy>
 
     public int ExpValue { get { return expValue; } }
 
+    void Start()
+    {
+        CreateStatsAsInstance();
+    }
+    void CreateStatsAsInstance()
+    {
+        CharacterStats statInst = Instantiate(stats) as CharacterStats;
+        stats = statInst;
+    }
     public int CompareTo(Enemy other)
     {
         throw new NotImplementedException();

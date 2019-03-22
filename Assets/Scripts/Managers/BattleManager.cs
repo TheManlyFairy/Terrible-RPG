@@ -8,7 +8,7 @@ public class BattleManager : MonoBehaviour
 {
 
     public float delayTimeBeforePartyReveals;
-    public List<Character> showList;
+    //public List<Character> showBattleOrderList;
 
     public static BattleManager instance;
     public static List<Character> battleOrder;
@@ -41,14 +41,16 @@ public class BattleManager : MonoBehaviour
 
     public static void BattleStart(PartyManager playerPartyManager, PartyManager enemyPartyManager)
     {
+        playerPartyManager.RevealAllParty();
+        enemyPartyManager.RevealAllParty();
         instance.playerPartyManager = playerPartyManager;
         instance.enemyPartyManager = enemyPartyManager;
-        BattleManager.playerParty = playerPartyManager.party;
-        BattleManager.enemyParty = enemyPartyManager.party;
+        playerParty = playerPartyManager.party;
+        enemyParty = enemyPartyManager.party;
         battleOrder.AddRange(playerParty);
         battleOrder.AddRange(enemyParty);
         battleOrder.Sort(new CompareCharactersByAgi());
-        instance.showList = battleOrder;
+        //instance.showList = battleOrder;
         GameManager.EnterBattleMode();
         instance.SetupTurn();
     }
@@ -82,7 +84,7 @@ public class BattleManager : MonoBehaviour
     {
         List<Character> livingEnemies;
         livingEnemies = enemyParty.Where(enemy => enemy.IsAlive).ToList();
-        //Debug.LogWarning("Living enemies: " + livingEnemies.Count);
+        Debug.LogWarning("Living enemies: " + livingEnemies.Count);
         return livingEnemies.Count == 0;
     }
     Character SelectTarget()
@@ -185,9 +187,10 @@ public class BattleManager : MonoBehaviour
         {
             GameManager.ExitBattleMode();
             yield return new WaitForSeconds(.5f);
-            Destroy(enemyPartyManager.gameObject);
             (playerPartyManager as PlayerPartyManager).GainExp((enemyPartyManager as EnemyPartyManager).TotalExpValue);
             playerPartyManager.HideAllButFirst();
+            Destroy(enemyPartyManager.gameObject);
+            battleOrder.RemoveAll(character => character);
         }
 
         else

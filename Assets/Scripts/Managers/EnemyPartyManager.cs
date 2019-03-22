@@ -14,7 +14,7 @@ public class EnemyPartyManager : PartyManager {
         SortPartyPositions();
         HideAllButFirst();
         CalculateTotalEXP();
-        GameManager.OnEnterBattle += RevealAllParty;
+        //GameManager.OnEnterBattle += RevealAllParty;
     }
 
     void CalculateTotalEXP()
@@ -25,12 +25,12 @@ public class EnemyPartyManager : PartyManager {
             totalExpValue += e.ExpValue;
         }
     }
-    void RevealAllParty()
+    public override void RevealAllParty()
     {
         RotateEnemyToFacePlayer();
         base.RevealAllParty();
     }
-	void RotateEnemyToFacePlayer()
+	public void RotateEnemyToFacePlayer()
     {
         SortPartyPositions();
         foreach(Character character in party)

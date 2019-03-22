@@ -29,12 +29,13 @@ public class PartyManager : MonoBehaviour
         }
         partyLeader.gameObject.SetActive(true);
     }
-    protected void RevealAllParty()
+    public virtual void RevealAllParty()
     {
         //StartCoroutine(RevealDelay());
-        foreach (Character c in party)
+        foreach (Character character in party)
         {
-            c.gameObject.SetActive(true);
+            character.gameObject.SetActive(true);
+            character.GetComponent<CharacterAnimator>().EnterBattleAnimation();
         }
     }
     protected void FindPartyMembers()

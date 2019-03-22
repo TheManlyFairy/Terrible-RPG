@@ -9,7 +9,8 @@ public class PlayerPartyManager : PartyManager
         FindPartyMembers();
         SortPartyPositions();
         HideAllButFirst();
-        GameManager.OnEnterBattle += RevealAllParty;
+        
+        //GameManager.OnEnterBattle += RevealAllParty;
     }
     void OnCollisionEnter(Collision col)
     {
@@ -23,14 +24,13 @@ public class PlayerPartyManager : PartyManager
     {
         yield return new WaitForSeconds(BattleManager.instance.delayTimeBeforePartyReveals);
 
-        RevealAllParty();
+        //RevealAllParty();
 
         transform.Translate(-transform.forward * 6);
         col.transform.Translate(transform.forward * 6);
 
         BattleManager.BattleStart(this, col.gameObject.GetComponent<PartyManager>());
     }
-
     public void GainExp(int expGained)
     {
         foreach(Player player in party)
@@ -39,4 +39,5 @@ public class PlayerPartyManager : PartyManager
                 player.GainExp(expGained);
         }
     }
+    
 }

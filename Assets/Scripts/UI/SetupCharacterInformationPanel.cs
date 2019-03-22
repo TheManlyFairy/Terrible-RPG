@@ -12,9 +12,11 @@ public class SetupCharacterInformationPanel : MonoBehaviour {
     }
 	void Setup()
     {
+        
         foreach(Character character in BattleManager.playerParty)
         {
             CharacterInformationBlock charInfo = Instantiate(characterInformationPrefab);
+            charInfo.gameObject.SetActive(true);
             charInfo.transform.parent = transform;
             charInfo.transform.localScale = Vector3.one;
             charInfo.SetupCharacter(character);

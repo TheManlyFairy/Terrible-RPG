@@ -16,13 +16,14 @@ public class CharacterAnimator : MonoBehaviour
         actor = GetComponent<Character>();
         actor.OnCombatActionPerformed += TriggerActionAnimation;
         actor.OnTakeDamage += DamageAnimations;
-        GameManager.OnEnterBattle += EnterBattleAnimation;
-        GameManager.OnExitBattle += ExitBattleAnimatons;
+        //GameManager.OnEnterBattle += EnterBattleAnimation;
+        //GameManager.OnExitBattle += ExitBattleAnimatons;
     }
 
     public void TriggerActionAnimation(ICombatAction actionInfo)
     {
-        if(actionInfo is ScriptableSkill)
+        //Debug.Log("Now animating " + gameObject.name + " Actions");
+        if (actionInfo is ScriptableSkill)
         {
             AnimationTrigger actionTrigger = (actionInfo as ScriptableSkill).animationTrigger;
             //Debug.Log("Now triggering animation: " + Enum.GetName(actionTrigger.GetType(), actionTrigger));
@@ -47,6 +48,7 @@ public class CharacterAnimator : MonoBehaviour
     }
     public void DamageAnimations()
     {
+        //Debug.Log("Now animating " + gameObject.name + " damage/death");
         //StartCoroutine(TakeDamage());
         if (actor.IsAlive)
             animator.SetTrigger("Damage");
@@ -55,6 +57,7 @@ public class CharacterAnimator : MonoBehaviour
     }
     public void EnterBattleAnimation()
     {
+        //Debug.Log("Now animating " + gameObject.name + " enter battle");
         if (actor is Player)
         {
             transform.localRotation = Quaternion.Euler(Vector3.zero);
@@ -74,11 +77,12 @@ public class CharacterAnimator : MonoBehaviour
 
     IEnumerator TakeDamage()
     {
+        Debug.Log("Now animating " + gameObject.name + " exit battle");
         yield return new WaitForSeconds(BattleManager.CurrentCharacter.Animator.GetCurrentAnimatorStateInfo(0).length);
         animator.SetTrigger("Damage");
         Debug.Log(animator.GetCurrentAnimatorStateInfo(0).ToString());
         yield return new WaitForSeconds (animator.GetCurrentAnimatorStateInfo(0).length);
-        if (actor.stats.HealthPercentage <= 0)
+        if (!actor.IsAlive)
             animator.SetTrigger("Death");
     }
 }

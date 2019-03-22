@@ -5,7 +5,6 @@ using Utility;
 
 public interface ICombatAction
 {
-    // overload methods
-    void CombatAction(Character actor, Character target);
-    void CombatAction(Character actor, List<Character> targets);
+    void CombatAction(Character target);
+    void CombatAction(List<Character> targets);
 }

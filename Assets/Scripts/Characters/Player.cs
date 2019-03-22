@@ -11,12 +11,13 @@ public class Player : Character, IComparable<Player>
     public int expToNextLevel;
 
 
-    void Awake()
+    void Start()
     {
-        animator = GetComponent<Animator>();
-        afflictedStatuses = new List<ScriptableStatus>();
-        stats.Actor = this;
-        stats.ResetStats();
+        //animator = GetComponent<Animator>();
+        //afflictedStatuses = new List<ScriptableStatus>();
+        //stats.Actor = this;
+        //stats.ResetStats();
+        //SetupAsActorForSkills();
         ApplyAllGearBonuses();
         expToNextLevel = (int)Math.Pow(level, 1.75) + 50;
     }
