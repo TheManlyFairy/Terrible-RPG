@@ -106,10 +106,15 @@ public class CharacterStats : ScriptableObject
     public void TakeDamage(float damage)
     {
         if (damage < 1)
+        {
             currentHealth -= 1;
+            Debug.Log(Actor.name + " took 1 damage!");
+        }
         else
+        {
             currentHealth -= damage;
-        //Debug.Log(actor.name + " took " + damage + " damage!");
+            Debug.Log(Actor.name + " took " + damage + " damage!");
+        }
     }
     public void ReduceMana(float manaLoss)
     {

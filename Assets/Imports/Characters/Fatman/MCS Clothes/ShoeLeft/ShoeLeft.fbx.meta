@@ -189,8 +189,8 @@ ModelImporter:
     400180: //RootNode
     400182: ShoeLeft
     400184: Sneaker_Left
-    2100000: material__a9bc04ef-1d1a-4fa7-909b-beac2558b924
-    2100002: material__3f66ef5f-acfc-4c71-a81a-d83597d9abe5
+    2100000: material__75cb604a-1011-4cc2-a923-5b2044b29a0b
+    2100002: material__d1ebe393-2c9c-4293-8746-60a777af024f
     4300000: Sneaker_Left
     9500000: //RootNode
     11400000: ShoeLeft
@@ -231,6 +231,7 @@ ModelImporter:
     globalScale: 1
     meshCompression: 0
     addColliders: 0
+    useSRGBMaterialColor: 1
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 1
@@ -255,6 +256,9 @@ ModelImporter:
     normalImportMode: 0
     tangentImportMode: 3
     normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
   importAnimation: 1
   copyAvatar: 0
   humanDescription:

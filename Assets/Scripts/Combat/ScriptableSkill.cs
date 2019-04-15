@@ -27,42 +27,48 @@ public class ScriptableSkill : ScriptableObject, ICombatAction
     [Range(0, 1)]
     public float statusChance;
 
-    public Character Actor
-    {
-        set { actor = value; }
-        get { return actor; }
-    }
+    public int RequiredLevel { get { return levelRequirement; } }
+
     Character actor;
     Character target;
     float damageOutput;
    
 
-    public bool IsUnlocked { get { return (actor as Player).level > levelRequirement; } }
-
-    public virtual void CombatAction(Character target)
+    
+    public virtual void CombatAction(Character actor, Character target)
     {
+        this.actor = actor;
         this.target = target;
         if (skillType != SkillType.status)
             InflictDamage(skillType);
 
         if (statusEffect != null && UnityEngine.Random.Range(0f, 1f) <= statusChance)
+        {
+            Debug.LogWarning("Inflicting status on " + target.name);
             InflictStatus();
+        }
+            
     }
-    public virtual void CombatAction(List<Character> targets)
+    public virtual void CombatAction(Character actor, List<Character> targets)
     {
-        //this.actor = actor;
+        this.actor = actor;
+        int counter = 1;
         foreach (Character target in targets)
         {
+            //Debug.LogWarning("Counter: " + counter);
+            counter++;
             this.target = target;
-            if (skillType != SkillType.status)
-            {
-                InflictDamage(skillType);
-            }
+            //Debug.Log("Target is " + target);
 
-            if (statusEffect != null && UnityEngine.Random.Range(0f, 1f) <= statusChance)
-            {
+            float rolledStatusChance = UnityEngine.Random.Range(0f, 1f);
+            //Debug.LogWarning("statusEffect != null: " + (statusEffect != null));
+            //Debug.LogWarning("rolledStatusChance <= statusChance: " + (rolledStatusChance <= statusChance));
+
+            if (skillType != SkillType.status)
+                InflictDamage(skillType);
+
+            if (statusEffect != null && rolledStatusChance <= statusChance)
                 InflictStatus();
-            }
         }
     }
 
@@ -70,31 +76,25 @@ public class ScriptableSkill : ScriptableObject, ICombatAction
     {
         if (skillType == SkillType.physical)
         {
-            Debug.Log(actor.name + " targeted ");
+            //Debug.Log(name +" used by " +actor.name + " targeted ");
             damageOutput = actor.stats.TotalStrength * damageBaseMultiplier - target.stats.TotalArmor;
             target.TakeDamage(damageOutput);
         }
         else if (skillType == SkillType.magical)
         {
-            Debug.Log(actor.name + " targeted " + target.name);
+            //Debug.Log(actor.name + " targeted " + target.name);
             damageOutput = actor.stats.TotalMagic * damageBaseMultiplier - target.stats.TotalResistance;
             target.TakeDamage(damageOutput);
         }
     }
     void InflictStatus()
     {
+        //Debug.LogWarning("Inflicting Status");
         if (!target.ContainsStatus(statusEffect))
         {
-            //ScriptableStatus newEffect = (ScriptableStatus)CreateInstance(typeof(ScriptableStatus));
             ScriptableStatus newEffect = Instantiate(statusEffect) as ScriptableStatus;
-            //newEffect.name = statusEffect.name;
-            //Debug.Log("Creating new " + newEffect.name + " of type " + newEffect.statusType);
-            target.AddStatusEffect(newEffect);
             newEffect.InitializeEffect(actor.stats, target.stats);
-        }
-        else
-        {
-
+            target.AddStatusEffect(newEffect);
         }
     }
 }

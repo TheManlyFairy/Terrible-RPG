@@ -189,9 +189,9 @@ ModelImporter:
     400180: rThumb2
     400182: rThumb3
     400184: rToe
-    2100000: material__e77021fb-fde6-4916-be95-bef42d603356
-    2100002: material__a1f3b6c2-d715-4ea7-ae7a-b754801e6874
-    2100004: material__c13cc918-f573-453c-936f-b241d1ada19f
+    2100000: material__7b820b89-2533-433f-8780-911f804cd240
+    2100002: material__c4c51833-967b-44fd-ad35-ffc483b3c0b8
+    2100004: material__fccb5eae-cf61-4e04-bfa0-213d0a13b02a
     4300000: pCube11
     9500000: //RootNode
     11400000: Belt
@@ -232,6 +232,7 @@ ModelImporter:
     globalScale: 1
     meshCompression: 0
     addColliders: 0
+    useSRGBMaterialColor: 1
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 1
@@ -256,6 +257,9 @@ ModelImporter:
     normalImportMode: 0
     tangentImportMode: 3
     normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
   importAnimation: 1
   copyAvatar: 0
   humanDescription:

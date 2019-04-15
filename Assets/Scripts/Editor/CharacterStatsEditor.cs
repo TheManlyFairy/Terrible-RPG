@@ -7,7 +7,7 @@ public class CharacterStatsEditor : Editor
     bool baseStats = true;
     bool bonusStats = true;
     bool totalStats = true;
-    bool perLevelStatGrowth = false;
+    bool perLevelStatGrowth = true;
 
     public override void OnInspectorGUI()
     {

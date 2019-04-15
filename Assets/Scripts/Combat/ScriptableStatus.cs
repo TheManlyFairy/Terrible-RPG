@@ -26,10 +26,11 @@ public class ScriptableStatus : ScriptableObject//, IEquatable<ScriptableStatus>
 
     public virtual void InitializeEffect(CharacterStats actor, CharacterStats target)
     {
+        //Debug.LogWarning("Initializing " + name);
         countdown = duration;
         affectedTarget = target;
 
-        //Debug.Log("Intiliazing against " + target.name);
+        //Debug.Log("Intiliazing "+statusType+" against " + target.name);
         // Debug.Log("Effect is of type " + statusType);
         switch (statusType)
         {
@@ -42,8 +43,6 @@ public class ScriptableStatus : ScriptableObject//, IEquatable<ScriptableStatus>
                 instantEffectBaseValue = target.TotalArmor;
                 perTurnEffectBaseValue = actor.TotalMagic;
                 targetStat = AffectedStat.armor;
-                //target.BonusArmor -= (instantEffectBaseValue * instantEffectMultiplier);
-                //Debug.Log("Lowered " + target.name + "'s armor by " + (baseValue * instantEffectMultiplier));
                 DebuffStat();
                 break;
             case StatusType.poison:
@@ -94,7 +93,6 @@ public class ScriptableStatus : ScriptableObject//, IEquatable<ScriptableStatus>
                 break;
         }
     }
-
     
     public void RefreshDuration()
     {

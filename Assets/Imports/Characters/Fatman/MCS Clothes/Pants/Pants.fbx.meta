@@ -189,7 +189,7 @@ ModelImporter:
     400180: rThumb2
     400182: rThumb3
     400184: rToe
-    2100000: material__4b3b8053-f390-487e-a6de-df20fca5c7d7
+    2100000: material__d3cae1da-eaca-4d32-bca7-6ffa4f404f69
     4300000: pants
     9500000: //RootNode
     11400000: Pants
@@ -230,6 +230,7 @@ ModelImporter:
     globalScale: 1
     meshCompression: 0
     addColliders: 0
+    useSRGBMaterialColor: 1
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 1
@@ -254,6 +255,9 @@ ModelImporter:
     normalImportMode: 0
     tangentImportMode: 3
     normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
   importAnimation: 1
   copyAvatar: 0
   humanDescription:

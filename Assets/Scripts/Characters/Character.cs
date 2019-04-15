@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+[RequireComponent(typeof(CharacterAnimator))]
+[RequireComponent(typeof(CharacterSounds))]
+[RequireComponent(typeof(BoxCollider))]
 public class Character : MonoBehaviour, IComparable<Character>
 {
     protected Animator animator;
@@ -29,7 +32,6 @@ public class Character : MonoBehaviour, IComparable<Character>
         afflictedStatuses = new List<ScriptableStatus>();
         stats.Actor = this;
         stats.ResetStats();
-        SetupAsActorForSkills();
     }
 
     public void CountdownStatuses()
@@ -43,19 +45,8 @@ public class Character : MonoBehaviour, IComparable<Character>
     }
     public void AddStatusEffect(ScriptableStatus status)
     {
-        //Debug.Log("Adding status for " + name);
-        if (ContainsStatus(status))
-        {
-            //Debug.Log(name + " already afflicted");
-            ScriptableStatus foundStatus = afflictedStatuses.Find(afflictedStatus => status.statusType == afflictedStatus.statusType);
-            //foundStatus.RefreshDuration();
-            //Debug.Log(name + "'s " + foundStatus.name + " effect has been refreshed to " + foundStatus.Countdown);
-        }
-        else
-        {
-            Debug.Log(name + " has received the " + status.effectName + " effect");
-            afflictedStatuses.Add(status);
-        }
+        Debug.Log(name + " has received the " + status.effectName + " effect");
+        afflictedStatuses.Add(status);
     }
     public void RemoveStatus(ScriptableStatus status)
     {
@@ -83,13 +74,13 @@ public class Character : MonoBehaviour, IComparable<Character>
     public void PerformAction()
     {
         //Debug.Log(name+" acting vs "+this.target)
-        combatAction.CombatAction(target);
+        combatAction.CombatAction(this,target);
         if (OnCombatActionPerformed != null)
             OnCombatActionPerformed(combatAction);
     }
-    public void PerformAction(List<Character> enemies)
+    public void PerformAction(List<Character> targets)
     {
-        combatAction.CombatAction(enemies);
+        combatAction.CombatAction(this,targets);
         if (OnCombatActionPerformed != null)
             OnCombatActionPerformed(combatAction);
     }
@@ -104,7 +95,7 @@ public class Character : MonoBehaviour, IComparable<Character>
         if (!IsAlive)
             RemoveAllStatus();
 
-        Debug.Log(name + " took " + damage + " damage!");
+        
     }
     public void ReduceMana(float manaLoss)
     {
@@ -119,14 +110,6 @@ public class Character : MonoBehaviour, IComparable<Character>
         stats.Heal(healing);
     }
 
-    protected void SetupAsActorForSkills()
-    {
-        basicAttack.Actor = this;
-        foreach(ScriptableSkill skill in skills)
-        {
-            skill.Actor = this;
-        }
-    }
     public int CompareTo(Character other)
     {
         throw new NotImplementedException();

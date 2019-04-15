@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 71b93f8716bf738458900b635621e4a2
+guid: 1c6c58cb0b9f7f04c839bc57a7b12d68
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
@@ -189,7 +189,7 @@ ModelImporter:
     400180: //RootNode
     400182: Shirt
     400184: shirt
-    2100000: material__ece834e5-2167-43c2-b45b-0de064b97a31
+    2100000: material__65e5ec15-52bd-494f-8fef-7edd4c3f5194
     4300000: shirt
     9500000: //RootNode
     11400000: Shirt
@@ -230,6 +230,7 @@ ModelImporter:
     globalScale: 1
     meshCompression: 0
     addColliders: 0
+    useSRGBMaterialColor: 1
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 1
@@ -254,6 +255,9 @@ ModelImporter:
     normalImportMode: 0
     tangentImportMode: 3
     normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
   importAnimation: 1
   copyAvatar: 0
   humanDescription:

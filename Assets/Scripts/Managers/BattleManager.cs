@@ -155,9 +155,9 @@ public class BattleManager : MonoBehaviour
                 if ((character.combatAction as ScriptableSkill).skillRange == SkillRange.multi)
                 {
                     Debug.Log(character + " targeted all enemies using " + character.combatAction);
-                    if (character is Player)
+                    if ((character.combatAction as ScriptableSkill).skillTargeting == SkillTargeting.enemyOnly)
                         character.PerformAction(enemyParty);
-                    else
+                    else if ((character.combatAction as ScriptableSkill).skillTargeting == SkillTargeting.playerOnly)
                         character.PerformAction(playerParty);
                 }
 
@@ -255,7 +255,8 @@ public class BattleManager : MonoBehaviour
             yield return null;
         }
 
-        foreach (Character enemy in enemyParty)
+        SetupEnmyMoves();
+        /*foreach (Character enemy in enemyParty)
         {
             enemy.combatAction = enemy.basicAttack;
             if (enemy.basicAttack.skillRange == SkillRange.single)
@@ -269,10 +270,35 @@ public class BattleManager : MonoBehaviour
                 Debug.Log(enemy.name + " using a multi targeted attack");
             }
 
-        }
+        }*/
         yield return null;
         StartCoroutine(PlayTurnPhase());
     }
+    void SetupEnmyMoves()
+    {
+        foreach (Enemy enemy in enemyParty)
+        {
+            enemy.RollChanceForSkillUse();
+            ScriptableSkill enemyAction = enemy.combatAction as ScriptableSkill;
+            if ((enemyAction.skillRange == SkillRange.single))
+            {
+                switch(enemyAction.skillTargeting)
+                {
+                    case SkillTargeting.playerOnly:
+                        enemy.target = playerParty[UnityEngine.Random.Range(0, playerParty.Count)];
+                        break;
+                    case SkillTargeting.enemyOnly:
+                        enemy.target = enemyParty[UnityEngine.Random.Range(0, playerParty.Count)];
+                        break;
+                    case SkillTargeting.allTargets:
+                        enemy.target = battleOrder[UnityEngine.Random.Range(0, playerParty.Count)];
+                        break;
+                }
+                    
+            }
+        }
+    }
+        
     /*void SetupEnemyPartyList()
      {
          enemyParty = new List<Enemy>();

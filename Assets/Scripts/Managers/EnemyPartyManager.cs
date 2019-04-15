@@ -12,11 +12,18 @@ public class EnemyPartyManager : PartyManager {
     {
         FindPartyMembers();
         SortPartyPositions();
+        CreateStatsAsInstances();
         HideAllButFirst();
         CalculateTotalEXP();
         //GameManager.OnEnterBattle += RevealAllParty;
     }
-
+    void CreateStatsAsInstances()
+    {
+        foreach(Enemy enemy in party)
+        {
+            enemy.CreateStatsAsInstance();
+        }
+    }
     void CalculateTotalEXP()
     {
 

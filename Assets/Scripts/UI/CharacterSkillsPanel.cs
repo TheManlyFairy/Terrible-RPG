@@ -21,7 +21,7 @@ public class CharacterSkillsPanel : MonoBehaviour
         int skillIndex = 0;
         foreach (ScriptableSkill skill in BattleManager.CurrentCharacter.skills)
         {
-            if(skill.IsUnlocked)
+            if(skill.RequiredLevel <= (BattleManager.CurrentCharacter as Player).level)
             {
                 SkillButton newSkillButton = Instantiate(skillButtonTemplate);
                 newSkillButton.transform.SetParent(transform);

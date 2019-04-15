@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cc6a6c2dd500d34d80e08c1d18a5872, type: 3}
+  m_Name: Invigoration
+  m_EditorClassIdentifier: 
+  statusType: 1
+  actorStat: 4
+  targetStat: 4
+  effectName: Invigoration
+  duration: 2
+  instantEffectMultiplier: 0.35
+  perTurnEffectMultiplier: 0
