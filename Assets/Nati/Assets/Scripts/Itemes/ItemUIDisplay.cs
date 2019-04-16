@@ -8,9 +8,8 @@ public class ItemUIDisplay : MonoBehaviour
 
     public ConsumableIteme consumableIteme;
     public Text copyCountText;
-    private int copyCount;
+    private int stackCount;
 
-    // Start is called before the first frame update
     void Start()
     {
         if (consumableIteme != null)
@@ -20,12 +19,11 @@ public class ItemUIDisplay : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (consumableIteme != null)
         {
-            if (copyCount != consumableIteme.copyCount)
+            if (stackCount != consumableIteme.stackCount)
             {
                 UpdateCopycount();
             }
@@ -34,8 +32,8 @@ public class ItemUIDisplay : MonoBehaviour
 
     void UpdateCopycount()
     {
-        copyCount = consumableIteme.copyCount;
-        copyCountText.text = "" + copyCount;
+        stackCount = consumableIteme.stackCount;
+        copyCountText.text = "" + stackCount;
     }
 
     void UpdateItemIcon()

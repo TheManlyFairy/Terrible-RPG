@@ -6,7 +6,8 @@ using UnityEngine.UI;
 [CreateAssetMenu(menuName = "Items/Constumable Item")]
 public class ConsumableIteme : ScriptableItem
 {
-    public int copyCount = 1;
+    public int maxStack = 10;
+    public int stackCount = 1;
     public float healthRecovered;
     public float manaRecovered;
 
