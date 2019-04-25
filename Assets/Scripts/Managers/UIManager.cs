@@ -9,6 +9,8 @@ public class UIManager : MonoBehaviour
     public GameObject battleUI;
     public CharacterSkillsPanel skillPanel;
 
+    public GameObject itemInfoPanel;
+
     void Start()
     {
         if (instance != null)
@@ -22,6 +24,7 @@ public class UIManager : MonoBehaviour
             GameManager.OnExitBattle += HideSkillsPanel;
             GameManager.OnExitBattle += HideBattleUI;
             skillPanel.Init();
+            itemInfoPanel.SetActive(false);
         }
     }
 

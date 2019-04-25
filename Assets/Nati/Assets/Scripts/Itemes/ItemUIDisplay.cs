@@ -10,6 +10,9 @@ public class ItemUIDisplay : MonoBehaviour
     public Text copyCountText;
     private int stackCount;
 
+    public Text itemNameText;
+    public Text itemStatText;
+
     void Start()
     {
         if (consumableIteme != null)
@@ -40,5 +43,20 @@ public class ItemUIDisplay : MonoBehaviour
     {
         Image icon = GetComponent<Image>();
         icon.sprite = consumableIteme.Icon;           
+    }
+
+    public void UpdateItemInfoText()
+    {
+        UIManager.instance.itemInfoPanel.SetActive(true);
+        itemNameText.text = consumableIteme.ItemName;
+        if(consumableIteme.healthRecovered > 0)
+        itemStatText.text = consumableIteme.statRecovery + " " + consumableIteme.healthRecovered;
+        else
+            itemStatText.text = consumableIteme.statRecovery + " " + consumableIteme.manaRecovered;
+    }
+
+    public void HideItemInfoPanel()
+    {
+        UIManager.instance.itemInfoPanel.SetActive(false);
     }
 }

@@ -16,5 +16,6 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 559cc66a7c45b0b4fb497bc6349b2f41, type: 3}
   maxStack: 10
   stackCount: 15
-  healthRecovered: 50
+  statRecovery: Health Recovery
+  healthRecovered: 25
   manaRecovered: 0
