@@ -19,3 +19,4 @@ MonoBehaviour:
   statRecovery: Mana Recovery
   healthRecovered: 0
   manaRecovered: 25
+  statsChange: 1

@@ -347,7 +347,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3445799740772365813}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2337461667175928648}
+        m_MethodName: UseItem
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &2337461667175928648
@@ -363,4 +374,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   consumableIteme: {fileID: 11400000, guid: 2af4d4c6e0d42c0409c5c0e35c9296e9, type: 2}
-  copyCountText: {fileID: 8515699990847550336}
+  stackCountText: {fileID: 0}
+  itemNameText: {fileID: 0}
+  itemStatText: {fileID: 0}

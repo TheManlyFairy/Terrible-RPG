@@ -121,4 +121,10 @@ public class CharacterStats : ScriptableObject
         if (currentHealth >= TotalHealth)
             currentHealth = TotalHealth;
     }
+    public void Clarity(float manaRestored)
+    {
+        currentMana += manaRestored;
+        if (currentMana >= TotalMana)
+            currentMana = TotalMana;
+    }
 }
