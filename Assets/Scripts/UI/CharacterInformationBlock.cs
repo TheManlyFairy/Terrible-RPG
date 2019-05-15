@@ -7,21 +7,25 @@ public class CharacterInformationBlock : MonoBehaviour
     public Text characterName;
     public Image healthBar;
     public Image manaBar;
+    [SerializeField]
+    Character character;
 
     public void SetupCharacter(Character character)
     {
+        this.character = character;
         characterName.text = character.name;
         healthBar.fillAmount = character.stats.HealthPercentage;
         manaBar.fillAmount = character.stats.ManaPercentage;
         character.OnHealthChange += UpdateHealthChange;
+        character.OnManaChange += UpdateManaChange;
     }
 
     void UpdateHealthChange(float newValue)
     {
-        healthBar.fillAmount = newValue;
+        healthBar.fillAmount = character.stats.HealthPercentage;
     }
     void UpdateManaChange(float newValue)
     {
-        manaBar.fillAmount = newValue;
+        manaBar.fillAmount = character.stats.ManaPercentage;
     }
 }

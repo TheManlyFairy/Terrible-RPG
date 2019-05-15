@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class PartyManager : MonoBehaviour
 {
+    public int positionModifier = -3;
     [SerializeField]
     Character partyLeader;
     public List<Character> party;
@@ -14,11 +15,9 @@ public class PartyManager : MonoBehaviour
    
     protected void SortPartyPositions()
     {
-        int positionModifier = 0;
-        foreach(Character character in party)
+        for (int i=0; i<party.Count; i++)
         {
-            character.transform.localPosition = new Vector3(positionModifier, character.transform.localPosition.y, 0);
-            positionModifier -= 3;
+            party[i].transform.localPosition = new Vector3(positionModifier*i, party[i].transform.localPosition.y, 0);
         }
     }
     public void HideAllButFirst()

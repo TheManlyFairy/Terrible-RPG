@@ -6,7 +6,7 @@ using System;
 public class Player : Character, IComparable<Player>
 {
     public ScriptableEquipment[] characterEquipment;
-    public int level = 1;
+    
     public int currentExp = 0;
     public int expToNextLevel;
 

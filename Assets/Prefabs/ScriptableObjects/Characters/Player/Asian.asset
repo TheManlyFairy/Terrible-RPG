@@ -4,7 +4,8 @@
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -13,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterName: Asian
   maxHealth: 20
-  currentHealth: 0
+  currentHealth: 20
   maxMana: 15
-  currentMana: 0
+  currentMana: 15
   strength: 8
   armor: 6
-  magic: 0
+  magic: 13
   resistance: 6
   agility: 8
   statusResistance: 0

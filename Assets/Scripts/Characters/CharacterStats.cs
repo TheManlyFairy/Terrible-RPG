@@ -6,8 +6,6 @@ using System;
 [CreateAssetMenu(menuName = "Character/Stats")]
 public class CharacterStats : ScriptableObject
 {
-    public static int partyLevel = 1;
-
     Character actor;
     public Character Actor
     {
@@ -28,13 +26,13 @@ public class CharacterStats : ScriptableObject
     #endregion
     #region Real Time Base Stats
     //the actual stats represnted by level growth
-    public float BaseHealth { get { return maxHealth * partyLevel; } }
-    public float BaseMana { get { return maxMana*partyLevel; } }
-    public float BaseStrength { get { return strength*partyLevel; } }
-    public float BaseArmor { get { return armor*partyLevel; } }
-    public float BaseMagic { get { return magic*partyLevel; } }
-    public float BaseResistance { get { return resistance * partyLevel; } }
-    public float BaseAgility { get { return agility*partyLevel; } }
+    public float BaseHealth { get { return maxHealth * actor.level; } }
+    public float BaseMana { get { return maxMana* actor.level; } }
+    public float BaseStrength { get { return strength*actor.level; } }
+    public float BaseArmor { get { return armor*actor.level; } }
+    public float BaseMagic { get { return magic*actor.level; } }
+    public float BaseResistance { get { return resistance * actor.level; } }
+    public float BaseAgility { get { return agility*actor.level; } }
     #endregion
     #region Bonus Stats (Private Variables)
     //bonus stats are only modified in combat and are reset to 0 at every battle end

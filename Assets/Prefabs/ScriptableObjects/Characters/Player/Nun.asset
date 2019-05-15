@@ -18,8 +18,8 @@ MonoBehaviour:
   maxMana: 30
   currentMana: 30
   strength: 2
-  armor: 1
-  magic: 1
+  armor: 3
+  magic: 10
   resistance: 20
   agility: 3
   statusResistance: 0

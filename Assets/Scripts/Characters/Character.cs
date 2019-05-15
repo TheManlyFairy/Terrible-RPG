@@ -10,7 +10,7 @@ using UnityEngine;
 public class Character : MonoBehaviour, IComparable<Character>
 {
     protected Animator animator;
-
+    public int level = 1;
     public CharacterStats stats;
     public ScriptableSkill basicAttack;
     public List<ScriptableSkill> skills;
@@ -88,14 +88,12 @@ public class Character : MonoBehaviour, IComparable<Character>
     {
         stats.TakeDamage(damage);
 
-        if (OnHealthChange != null)
-            OnHealthChange(stats.HealthPercentage);
         if (OnTakeDamage != null)
             OnTakeDamage();
         if (!IsAlive)
             RemoveAllStatus();
-
-        
+        if (OnHealthChange != null)
+            OnHealthChange(stats.HealthPercentage);
     }
     public void ReduceMana(float manaLoss)
     {

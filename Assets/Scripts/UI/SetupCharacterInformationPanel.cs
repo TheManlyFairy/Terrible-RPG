@@ -5,15 +5,12 @@ using UnityEngine;
 public class SetupCharacterInformationPanel : MonoBehaviour {
 
     public CharacterInformationBlock characterInformationPrefab;
-
-    void Start()
+    List<Character> playerParty;
+    
+	public void Setup()
     {
-        GameManager.OnEnterBattle += Setup;
-    }
-	void Setup()
-    {
-        
-        foreach(Character character in BattleManager.playerParty)
+        playerParty = FindObjectOfType<PlayerPartyManager>().party;
+        foreach(Character character in playerParty)
         {
             CharacterInformationBlock charInfo = Instantiate(characterInformationPrefab);
             charInfo.gameObject.SetActive(true);

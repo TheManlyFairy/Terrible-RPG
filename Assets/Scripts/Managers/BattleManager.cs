@@ -128,7 +128,7 @@ public class BattleManager : MonoBehaviour
 
     IEnumerator PlayTurnPhase()
     {
-        UIManager.instance.HideBattleUI();
+        UIManager.instance.HideActionsPanel();
         Vector3 targetPos;
         float timer;
         foreach (Character character in battleOrder)
@@ -198,7 +198,7 @@ public class BattleManager : MonoBehaviour
     }
     IEnumerator SetupTurnPhase()
     {
-        UIManager.instance.ShowBattleUI();
+        UIManager.instance.ShowActionsPanel();
         currentCharacter = playerParty[0];
         for (int partyIndex = 0; partyIndex < playerParty.Count; partyIndex++)
         {
@@ -288,7 +288,7 @@ public class BattleManager : MonoBehaviour
                         enemy.target = playerParty[UnityEngine.Random.Range(0, playerParty.Count)];
                         break;
                     case SkillTargeting.enemyOnly:
-                        enemy.target = enemyParty[UnityEngine.Random.Range(0, playerParty.Count)];
+                        enemy.target = enemyParty[UnityEngine.Random.Range(0, enemyParty.Count)];
                         break;
                     case SkillTargeting.allTargets:
                         enemy.target = battleOrder[UnityEngine.Random.Range(0, playerParty.Count)];

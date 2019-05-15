@@ -7,7 +7,9 @@ public class UIManager : MonoBehaviour
 {
     public static UIManager instance;
     public GameObject battleUI;
+    public GameObject actionsPanel;
     public CharacterSkillsPanel skillPanel;
+    public SetupCharacterInformationPanel characterInfoPanel;
 
     void Start()
     {
@@ -18,10 +20,12 @@ public class UIManager : MonoBehaviour
         else
         {
             instance = this;
-            //GameManager.OnEnterBattle += DisplayBattleUI;
+            GameManager.OnEnterBattle += ShowBattleUI;
             GameManager.OnExitBattle += HideSkillsPanel;
             GameManager.OnExitBattle += HideBattleUI;
             skillPanel.Init();
+            characterInfoPanel.Setup();
+            battleUI.SetActive(false);
         }
     }
 
@@ -53,5 +57,13 @@ public class UIManager : MonoBehaviour
         //Debug.Log("Deactivating skill panel");
         instance.skillPanel.RemoveCurrentSkillButtons();
         instance.skillPanel.gameObject.SetActive(false);
+    }
+    public void ShowActionsPanel()
+    {
+        actionsPanel.SetActive(true);
+    }
+    public void HideActionsPanel()
+    {
+        actionsPanel.SetActive(false);
     }
 }
