@@ -16,6 +16,7 @@ public class BattleManager : MonoBehaviour
     public static List<Character> enemyParty;
     public LayerMask targetingMask;
     static Character currentCharacter;
+    public static BattleStage battleStage;
 
     public static Character CurrentCharacter { get { return currentCharacter; } }
 
@@ -128,6 +129,7 @@ public class BattleManager : MonoBehaviour
 
     IEnumerator PlayTurnPhase()
     {
+        battleStage = BattleStage.playing;
         UIManager.instance.HideActionsPanel();
         Vector3 targetPos;
         float timer;
@@ -200,6 +202,7 @@ public class BattleManager : MonoBehaviour
     {
         UIManager.instance.ShowActionsPanel();
         currentCharacter = playerParty[0];
+        battleStage = BattleStage.starting;
         for (int partyIndex = 0; partyIndex < playerParty.Count; partyIndex++)
         {
             currentCharacter = playerParty[partyIndex];
@@ -224,11 +227,12 @@ public class BattleManager : MonoBehaviour
 
             //Debug.Log(currentCharacter + "'s selected action is "+currentCharacter.combatAction);
 
-            if (currentCharacter.combatAction!= null && currentCharacter.combatAction is ScriptableSkill)
+            if (currentCharacter.combatAction != null && currentCharacter.combatAction is ScriptableSkill)
             {
                 if ((currentCharacter.combatAction as ScriptableSkill).skillRange == SkillRange.single)
                 {
                     Debug.Log("selecting target");
+                    battleStage = BattleStage.targetSelection;
                     while (currentCharacter.target == null)
                     {
                         if (Input.GetMouseButtonDown(0))
@@ -282,7 +286,7 @@ public class BattleManager : MonoBehaviour
             ScriptableSkill enemyAction = enemy.combatAction as ScriptableSkill;
             if ((enemyAction.skillRange == SkillRange.single))
             {
-                switch(enemyAction.skillTargeting)
+                switch (enemyAction.skillTargeting)
                 {
                     case SkillTargeting.playerOnly:
                         enemy.target = playerParty[UnityEngine.Random.Range(0, playerParty.Count)];
@@ -294,11 +298,11 @@ public class BattleManager : MonoBehaviour
                         enemy.target = battleOrder[UnityEngine.Random.Range(0, playerParty.Count)];
                         break;
                 }
-                    
+
             }
         }
     }
-        
+
     /*void SetupEnemyPartyList()
      {
          enemyParty = new List<Enemy>();

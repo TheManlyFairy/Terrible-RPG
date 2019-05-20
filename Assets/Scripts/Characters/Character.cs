@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Utility;
 
 [RequireComponent(typeof(CharacterAnimator))]
 [RequireComponent(typeof(CharacterSounds))]
@@ -23,7 +24,7 @@ public class Character : MonoBehaviour, IComparable<Character>
     public Action<float> OnHealthChange;
     public Action<float> OnManaChange;
     public Action OnTakeDamage;
-    
+
     public Animator Animator { get { return animator; } }
     public bool IsAlive { get { return stats.currentHealth > 0; } }
     void Awake()
@@ -107,6 +108,8 @@ public class Character : MonoBehaviour, IComparable<Character>
         Debug.Log("Healing " + name + " for " + healing);
         stats.Heal(healing);
     }
+
+    
 
     public int CompareTo(Character other)
     {

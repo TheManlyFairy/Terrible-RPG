@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterName: Chemist
   maxHealth: 15
-  currentHealth: 15
+  currentHealth: 300
   maxMana: 50
-  currentMana: 50
+  currentMana: 1000
   strength: 5
   armor: 4
   magic: 15

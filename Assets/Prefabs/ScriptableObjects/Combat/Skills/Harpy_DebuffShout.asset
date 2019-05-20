@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95c02aabf9f67f744a15f0fef35fcf39, type: 3}
+  m_Name: Harpy_DebuffShout
+  m_EditorClassIdentifier: 
+  skillType: 2
+  skillRange: 1
+  skillTargeting: 0
+  animationTrigger: 4
+  icon: {fileID: 0}
+  soundEffect: {fileID: 8300000, guid: 1e1fd2a3148734c4f9a8b2c4586ed458, type: 3}
+  skillName: Intimidating Shout
+  levelRequirement: 0
+  manaCost: 0
+  damageBaseMultiplier: 0
+  statusEffect: {fileID: 11400000, guid: 365db67678a57364d969b0634b44d59f, type: 2}
+  statusChance: 1

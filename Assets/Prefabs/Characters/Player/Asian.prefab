@@ -579,7 +579,8 @@ GameObject:
   - component: {fileID: 1732861098451760649}
   - component: {fileID: 4030785753669489726}
   - component: {fileID: 2207557211089581426}
-  m_Layer: 0
+  - component: {fileID: 32043504}
+  m_Layer: 10
   m_Name: Asian
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -766,7 +767,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a90352af04fa144485e228c527f5eeb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: 1
+  level: 20
   stats: {fileID: 11400000, guid: 7e0416bbb1bb79c44a8fef02d13ee90f, type: 2}
   basicAttack: {fileID: 11400000, guid: dd35fd15e5436fb4b90bb6cd2072e7c5, type: 2}
   skills:
@@ -778,6 +779,19 @@ MonoBehaviour:
   characterEquipment: []
   currentExp: 0
   expToNextLevel: 0
+--- !u!114 &32043504
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9046338778904240989}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00fc4741f6ab83a4db077c3ed9d3e1f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  worldCanvas: {fileID: 0}
 --- !u!1 &9046338778916288928
 GameObject:
   m_ObjectHideFlags: 0

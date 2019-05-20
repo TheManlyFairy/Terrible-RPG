@@ -20,6 +20,8 @@ namespace Utility
     public enum AnimationTrigger { Basic = 1, Physical = 2, Magical = 3, Status = 4, Damage = 5, Death = 6 }
     //defines the type of gear
     public enum GearType { helmet = 0, armor = 1, boots = 2, weapon = 3 }
+    //defines the different stages of battle
+    public enum BattleStage { playing, starting, targetSelection }
 }
 
 public class CompareCharactersByAgi : IComparer<Character>

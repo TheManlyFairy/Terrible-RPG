@@ -8,27 +8,25 @@ public class GameManager : MonoBehaviour
 {
     public static Action OnEnterBattle;
     public static Action OnExitBattle;
-    public static GameManager gameManager;
+    public static GameManager instance;
     public static List<Player> partyMembers;
-    GameState gameState;
-
-    public GameState CurrentGameState { get { return gameState; } }
+    public static GameState gameState;
 
     void Awake()
     {
-        if (gameManager != null)
+        if (instance != null)
         {
             Destroy(gameObject);
         }
         else
         {
-            gameManager = this;
+            instance = this;
         }
     }
 
     public static void EnterBattleMode()
     {
-        gameManager.gameState = GameState.battle;
+        gameState = GameState.battle;
         if (OnEnterBattle != null)
         {
             OnEnterBattle();
@@ -37,7 +35,7 @@ public class GameManager : MonoBehaviour
     }
     public static void ExitBattleMode()
     {
-        gameManager.gameState = GameState.world;
+        gameState = GameState.world;
         if (OnExitBattle != null)
         {
             OnExitBattle();

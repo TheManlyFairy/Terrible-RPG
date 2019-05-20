@@ -14,14 +14,14 @@ public class PlayerControls : MonoBehaviour
 
     void Start()
     {
-        gameManager = GameManager.gameManager;
+        gameManager = GameManager.instance;
         rigBody = GetComponent<Rigidbody>();
         partyLeadAnimator = GetComponent<PartyManager>().PartyLeader.GetComponent<CharacterAnimator>();
     }
 
     void FixedUpdate()
     {
-        if (gameManager.CurrentGameState == GameState.world)
+        if (GameManager.gameState == GameState.world)
             Move();
     }
 
