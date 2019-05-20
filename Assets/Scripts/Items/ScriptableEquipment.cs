@@ -14,4 +14,6 @@ public class ScriptableEquipment : ScriptableItem
     public float bonusMagic;
     public float bonusResistance;
     public float bonusAgility;
+
+    
 }
