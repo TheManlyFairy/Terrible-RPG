@@ -46,6 +46,10 @@ ModelImporter:
     100080: mixamorig:Spine1
     100082: mixamorig:Spine2
     100084: polySurface2199
+    100086: default
+    100088: initialShadingGroup
+    100090: polySurface1
+    100092: polySurface2
     400000: //RootNode
     400002: mixamorig:Head
     400004: mixamorig:HeadTop_End
@@ -89,6 +93,10 @@ ModelImporter:
     400080: mixamorig:Spine1
     400082: mixamorig:Spine2
     400084: polySurface2199
+    400086: default
+    400088: initialShadingGroup
+    400090: polySurface1
+    400092: polySurface2
     2100000: blinn3
     2100002: lambertUVS
     2100004: initialShadingGroup2
@@ -137,10 +145,21 @@ ModelImporter:
     2100090: Toda_Stretch_Denim_FCL1PSD003_FRONT_79453
     2100092: Toda_Stretch_Denim_FCL1PSD003_FRONT_79452
     2100094: EyeBall
+    2100096: No Name
+    2300000: default
+    3300000: default
     4300000: polySurface2199
+    4300002: default
+    4300004: initialShadingGroup
+    4300006: polySurface2
+    4300008: polySurface1
     7400000: mixamo.com
     9500000: //RootNode
     13700000: polySurface2199
+    13700002: initialShadingGroup
+    13700004: polySurface1
+    13700006: polySurface2
+    2186277476908879412: ImportLogs
   externalObjects:
   - first:
       type: UnityEngine:Texture2D
