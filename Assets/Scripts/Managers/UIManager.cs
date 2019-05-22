@@ -26,12 +26,9 @@ public class UIManager : MonoBehaviour
             GameManager.OnExitBattle += HideSkillsPanel;
             GameManager.OnExitBattle += HideBattleUI;
             skillPanel.Init();
-<<<<<<< HEAD
             characterInfoPanel.Setup();
             battleUI.SetActive(false);
-=======
-            itemInfoPanel.SetActive(false);
->>>>>>> origin/CharacterWireFrame
+            //itemInfoPanel.SetActive(false);
         }
     }
 
