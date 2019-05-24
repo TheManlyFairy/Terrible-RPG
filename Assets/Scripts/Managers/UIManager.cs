@@ -10,6 +10,7 @@ public class UIManager : MonoBehaviour
     public CharacterSkillsPanel skillPanel;
 
     public GameObject itemInfoPanel;
+    public GameObject InventoryPanel;
 
     void Start()
     {
@@ -25,6 +26,15 @@ public class UIManager : MonoBehaviour
             GameManager.OnExitBattle += HideBattleUI;
             skillPanel.Init();
             itemInfoPanel.SetActive(false);
+            InventoryPanel.SetActive(false);
+        }
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            ShowInventoryPanel();
         }
     }
 
@@ -56,5 +66,20 @@ public class UIManager : MonoBehaviour
         //Debug.Log("Deactivating skill panel");
         instance.skillPanel.RemoveCurrentSkillButtons();
         instance.skillPanel.gameObject.SetActive(false);
+    }
+
+    public void ShowInventoryPanel()
+    {
+        if (!InventoryPanel.activeSelf)
+        {
+            InventoryPanel.SetActive(true);
+        }
+        else
+        {
+            InventoryPanel.SetActive(false);
+
+            if (itemInfoPanel.activeSelf)
+                itemInfoPanel.SetActive(false);
+        }
     }
 }
