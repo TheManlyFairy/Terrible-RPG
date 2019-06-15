@@ -6,6 +6,7 @@ using Utility;
 [CreateAssetMenu(menuName ="Items/Equipment")]
 public class ScriptableEquipment : ScriptableItem
 {
+
     public GearType gearType;
     public float bonusHealth;
     public float bonusMana;
@@ -14,6 +15,9 @@ public class ScriptableEquipment : ScriptableItem
     public float bonusMagic;
     public float bonusResistance;
     public float bonusAgility;
+
+    public Sprite Icon { get { return icon; } }
+    public GearType GearType { get { return gearType; } }
 
     
 }

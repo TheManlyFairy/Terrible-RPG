@@ -1,0 +1,88 @@
+{
+    "format": {
+        "version": "1.0"
+    },
+    "shaders": {
+        "Glass": {
+            "parameters": {
+                "Common Parameters": {
+                    "ao_intensity": 0.75,
+                    "emissive_intensity": 1,
+                    "horizonFade": 1.2999999523162842,
+                    "nbSamples": 16
+                },
+                "Parallax Occlusion Mapping": {
+                    "maxPOMSamples": 16,
+                    "minPOMSamples": 4,
+                    "pomStrength": 1,
+                    "usePOM": false
+                }
+            },
+            "shader": "pbr-metal-rough-with-alpha-blending",
+            "shaderInstance": "Glass"
+        },
+        "Main shader": {
+            "parameters": {
+                "Common Parameters": {
+                    "ao_intensity": 0.75,
+                    "emissive_intensity": 1,
+                    "horizonFade": 1.2999999523162842,
+                    "nbSamples": 16
+                },
+                "Parallax Occlusion Mapping": {
+                    "maxPOMSamples": 16,
+                    "minPOMSamples": 4,
+                    "pomStrength": 1,
+                    "usePOM": false
+                },
+                "Subsurface Scattering Parameters": {
+                    "sssColor": [
+                        0.7009999752044678,
+                        0.3009999990463257,
+                        0.3050000071525574
+                    ],
+                    "sssEnabled": true,
+                    "sssScale": 0.5,
+                    "sssType": 1
+                }
+            },
+            "shader": "pbr-metal-rough",
+            "shaderInstance": "Main shader"
+        }
+    },
+    "texturesets": {
+        "House_TXTR": {
+            "shader": "Main shader"
+        },
+        "Pergul_TXTR": {
+            "shader": "Main shader"
+        },
+        "Roof_TXTR": {
+            "shader": "Main shader"
+        },
+        "Smith_Body_Door": {
+            "shader": "Main shader"
+        },
+        "Smith_Body_DoorOutline": {
+            "shader": "Main shader"
+        },
+        "Smith_Body_Glass": {
+            "shader": "Glass"
+        },
+        "Smith_Body_Stone": {
+            "shader": "Main shader"
+        },
+        "Smith_Roof_Top": {
+            "shader": "Main shader"
+        },
+        "Smith_Sign_MetalHold": {
+            "shader": "Main shader"
+        },
+        "Smith_Sign_Wood": {
+            "shader": "Main shader"
+        },
+        "smith_Pergul_Outline": {
+            "shader": "Main shader"
+        }
+    }
+}

@@ -77,6 +77,10 @@ public class ItemUIDisplay : MonoBehaviour
 
         }
         HideItemInfoPanel();
-        Destroy(this.gameObject);
+
+        if (stackCount <= 0)
+            Destroy(this.gameObject);
+        else
+            stackCount--;
     }
 }

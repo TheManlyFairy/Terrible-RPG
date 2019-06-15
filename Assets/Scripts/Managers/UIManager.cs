@@ -9,8 +9,10 @@ public class UIManager : MonoBehaviour
     public GameObject battleUI;
     public CharacterSkillsPanel skillPanel;
 
+    //Nati
     public GameObject itemInfoPanel;
     public GameObject InventoryPanel;
+    public GameObject equipmentPanel;
 
     void Start()
     {
@@ -25,8 +27,11 @@ public class UIManager : MonoBehaviour
             GameManager.OnExitBattle += HideSkillsPanel;
             GameManager.OnExitBattle += HideBattleUI;
             skillPanel.Init();
+
+            //Nati
             itemInfoPanel.SetActive(false);
             InventoryPanel.SetActive(false);
+            equipmentPanel.SetActive(false);
         }
     }
 
@@ -35,6 +40,11 @@ public class UIManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.I))
         {
             ShowInventoryPanel();
+        }
+
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            ShowEquipmentPanel();
         }
     }
 
@@ -77,6 +87,21 @@ public class UIManager : MonoBehaviour
         else
         {
             InventoryPanel.SetActive(false);
+
+            if (itemInfoPanel.activeSelf)
+                itemInfoPanel.SetActive(false);
+        }
+    }
+
+    public void ShowEquipmentPanel()
+    {
+        if (!equipmentPanel.activeSelf)
+        {
+            equipmentPanel.SetActive(true);
+        }
+        else
+        {
+            equipmentPanel.SetActive(false);
 
             if (itemInfoPanel.activeSelf)
                 itemInfoPanel.SetActive(false);

@@ -1,0 +1,170 @@
+fileFormatVersion: 2
+guid: 762e80cf9e85dd044a1ba5bb8cf4248b
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: //RootNode
+    400000: //RootNode
+    2100000: Church_Barracks_Flag1
+    2100002: Church_Barracks_body_SignHolder1
+    2100004: Church_Barracks_Body_WindowShelf1
+    2100006: Church_Barracks_Body_FloorHolder1
+    2100008: Church_Barracks_Tower_Body1
+    2100010: Church_Smith_Roof_Top1
+    2100012: Church_Pergul_TXTR1
+    2100014: Church_Barracks_MainDoor1
+    2100016: Church_Barracks_body3
+    2100018: Church_Smith_Sign_Wood1
+    2100020: Church_Barracks_Tower_Window1
+    2100022: Church_Barracks_Body_Holder1
+    2100024: Church_lambert2
+    2300000: //RootNode
+    3300000: //RootNode
+    4300000: Church1
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Church_Barracks_Body_FloorHolder1
+    second: {fileID: 2100000, guid: 92bb7577332ccbe4e97ea0fd74254b80, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Church_Barracks_Body_Holder1
+    second: {fileID: 2100000, guid: 838f62d72c3bd1b489631002fc80153e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Church_Barracks_Body_WindowShelf1
+    second: {fileID: 2100000, guid: 9a004b5e3e44ad3448e5029e287bb1cd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Church_Barracks_Flag1
+    second: {fileID: 2100000, guid: b896374089968d141bc718b8c53c770d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Church_Barracks_MainDoor1
+    second: {fileID: 2100000, guid: d0e3c2866ca90e84cae4eba9d20fdef0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Church_Barracks_Tower_Body1
+    second: {fileID: 2100000, guid: e540fcd9606d14e4e8479e2d801e0911, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Church_Barracks_Tower_Window1
+    second: {fileID: 2100000, guid: 827531cb9cf41a446956aa1288f2fcdd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Church_Barracks_body3
+    second: {fileID: 2100000, guid: 1267eea979ba0fb4db5b5fecd3344589, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Church_Barracks_body_SignHolder1
+    second: {fileID: 2100000, guid: 14de387a7d641a84fb38b46548523e8d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Church_Pergul_TXTR1
+    second: {fileID: 2100000, guid: 6a013094160d8ed4d89b3e6fa7470ba7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Church_Smith_Roof_Top1
+    second: {fileID: 2100000, guid: a3bda1a935f089d4a93550c4ef31627d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Church_Smith_Sign_Wood1
+    second: {fileID: 2100000, guid: 6574ea16d0093ab468dc16027fb585a0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Church_lambert2
+    second: {fileID: 2100000, guid: 5e39a949e39aa104e959680187cb3d78, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,94 @@
+{
+    "format": {
+        "version": "1.0"
+    },
+    "shaders": {
+        "Glass": {
+            "parameters": {
+                "Common Parameters": {
+                    "ao_intensity": 0.75,
+                    "emissive_intensity": 1,
+                    "horizonFade": 1.2999999523162842,
+                    "nbSamples": 16
+                },
+                "Parallax Occlusion Mapping": {
+                    "maxPOMSamples": 16,
+                    "minPOMSamples": 4,
+                    "pomStrength": 1,
+                    "usePOM": false
+                }
+            },
+            "shader": "pbr-metal-rough-with-alpha-blending",
+            "shaderInstance": "Glass"
+        },
+        "Main shader": {
+            "parameters": {
+                "Common Parameters": {
+                    "ao_intensity": 0.75,
+                    "emissive_intensity": 1,
+                    "horizonFade": 1.2999999523162842,
+                    "nbSamples": 16
+                },
+                "Parallax Occlusion Mapping": {
+                    "maxPOMSamples": 16,
+                    "minPOMSamples": 4,
+                    "pomStrength": 1,
+                    "usePOM": false
+                },
+                "Subsurface Scattering Parameters": {
+                    "sssColor": [
+                        0.7009999752044678,
+                        0.3009999990463257,
+                        0.3050000071525574
+                    ],
+                    "sssEnabled": true,
+                    "sssScale": 0.5,
+                    "sssType": 1
+                }
+            },
+            "shader": "pbr-metal-rough",
+            "shaderInstance": "Main shader"
+        }
+    },
+    "texturesets": {
+        "Barracks_Body_FloorHolder": {
+            "shader": "Main shader"
+        },
+        "Barracks_Body_Holder": {
+            "shader": "Main shader"
+        },
+        "Barracks_Body_WindowShelf": {
+            "shader": "Main shader"
+        },
+        "Barracks_Flag": {
+            "shader": "Main shader"
+        },
+        "Barracks_MainDoor": {
+            "shader": "Main shader"
+        },
+        "Barracks_Tower_Body": {
+            "shader": "Main shader"
+        },
+        "Barracks_Tower_Window": {
+            "shader": "Glass"
+        },
+        "Barracks_body2": {
+            "shader": "Main shader"
+        },
+        "Barracks_body_SignHolder": {
+            "shader": "Main shader"
+        },
+        "Pergul_TXTR": {
+            "shader": "Main shader"
+        },
+        "Smith_Roof_Top": {
+            "shader": "Main shader"
+        },
+        "Smith_Sign_Wood": {
+            "shader": "Main shader"
+        },
+        "lambert1": {
+            "shader": "Main shader"
+        }
+    }
+}
